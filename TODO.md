@@ -2,6 +2,264 @@
 
 Current and near-term work. Mutable — edit freely, unlike the journal or decisions log.
 
-Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, depends-on: T<a>, T<b>]`. IDs are sequential and never reused. A task is safe to hand to a parallel agent once every id in its `depends-on` is checked off. See the `plan-tasks` skill.
+Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simple|complex][, depends-on: T<a>, T<b>][, design: path]`. IDs are sequential and never reused. A task is safe to hand to a parallel agent once every id in its `depends-on` is checked off. See the `plan-tasks` skill.
 
-- [ ] `T1` Review and approve the Bear Chat product spec — manual, design: docs/designs/product-spec.md
+## Product and design approval
+
+- [x] `T1` Review and approve the Bear Chat product spec — manual, design: docs/designs/product-spec.md
+- [ ] `T2` Review the enlarged moving-bear room mock and provide visual feedback — manual, design: docs/designs/bear-chat-room-mock-v2.png
+- [ ] `T3` Review and approve the standalone Bear Chat high-level design — manual, depends-on: T1, T2, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [ ] `T4` Review and approve the LLD baseline after resolving its preimplementation questions — manual, depends-on: T3, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T5` Confirm the minimum iOS version and supported iPhone boundary — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T6` Decide whether owner-only forming and remaining rooms are valid product states — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T7` Decide how owned rooms must be resolved before account deletion — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T8` Approve the room-deletion purge window and user-facing deletion semantics — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T9` Approve report categories, disclosed context, reviewer fields, and retention policy — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T10` Choose the fresh-install invitation recovery behavior — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T11` Approve detailed-notification event kinds, content limits, and privacy copy — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T12` Confirm whether blocking is symmetric for interactions and notifications — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T13` Choose the least-privilege safety-review interface for beta and production — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T14` Approve a foreground committed-message delivery latency objective — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T15` Approve display-name, room-name, message, invitation-expiry, and invitation-use limits — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T16` Choose when the app requests notification permission — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T17` Confirm supported orientation and compact-versus-expanded room panel behavior — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## External setup and policy
+
+- [ ] `T18` Provision Apple identifiers, Sign in with Apple, APNs credentials, and associated-domain capabilities — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T19` Provision development, staging, and production Supabase projects with Apple authentication and environment secrets — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T20` Provision the invitation domain, TLS hosting, and Universal Link association hosting — manual, depends-on: T4, T10, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T21` Publish approved privacy, safety, moderation, non-E2EE, and deletion policies — manual, depends-on: T4, T8, T9, T11, T12, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T201` Create the App Store Connect app listing (name, bundle ID, SKU) and configure TestFlight internal tester group — manual, depends-on: T18, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [ ] `T202` Add an Xcode archive and TestFlight upload lane to CI — agent, complexity: complex, depends-on: T27, T201, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [ ] `T203` Configure TestFlight external testing group and submit first build for Beta App Review — manual, depends-on: T21, T168, T202, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [ ] `T22` Provide the approved MVP room, appearance, action, reaction, and audio asset pack — manual, depends-on: T2, T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T23` Approve production rate-limit values from measured event, presence, and movement load — manual, depends-on: T177, T178, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T24` Approve the production cache budget from offline and oldest-device measurements — manual, depends-on: T175, T179, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Project foundations
+
+- [ ] `T25` Scaffold the iOS app and test targets with filesystem-synchronized groups and pinned Supabase Swift dependency — agent, complexity: complex, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T26` Scaffold local Supabase configuration, migrations, Edge Functions, and backend test harnesses — agent, complexity: simple, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T27` Add CI for the iOS build and unit-test targets — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T28` Add CI for Supabase migrations, pgTAP tests, and Edge Function tests — agent, complexity: simple, depends-on: T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T29` Add non-secret development, staging, and production configuration boundaries — agent, complexity: simple, depends-on: T25, T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T30` Create the FR/NFR requirements-traceability matrix with named verification owners — agent, complexity: simple, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T31` Update AGENTS.md with the selected stack, commands, and architecture shape — agent, complexity: simple, depends-on: T27, T28, T29, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Client domain model
+
+- [ ] `T32` Define account, profile, and versioned appearance domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T33` Define room, membership, and invitation domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T34` Define ordered event, payload, pending-send, and send-state domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T35` Define presence, movement, normalized-position, and active-bear domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T36` Define push-device and notification-preference domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T37` Define block, report, disclosure, and safety-status domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T38` Define explicit room-connection lifecycle states — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T39` Define approved product, timing, cache, and schema-version constants — agent, complexity: simple, depends-on: T4, T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Database schema and authorization
+
+- [ ] `T40` Add the PostgreSQL extensions, enums, and constrained domains migration — agent, complexity: complex, depends-on: T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T41` Add the profiles and backend asset-catalog schema migration — agent, complexity: complex, depends-on: T40, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T42` Add the rooms, memberships, and invitation schema migration — agent, complexity: complex, depends-on: T40, T41, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T43` Add the append-only ordered room-events schema migration — agent, complexity: complex, depends-on: T40, T41, T42, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T44` Add the presence-session and room-position schema migration — agent, complexity: complex, depends-on: T40, T42, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T45` Add the protected push-device schema migration — agent, complexity: complex, depends-on: T40, T41, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T46` Add the directional user-block schema migration — agent, complexity: complex, depends-on: T40, T41, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T47` Add the safety-report and append-only audit schema migration — agent, complexity: complex, depends-on: T40, T41, T42, T43, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T48` Add the operation-scoped rate-counter schema migration — agent, complexity: complex, depends-on: T40, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T49` Add the idempotent account-deletion job schema migration — agent, complexity: complex, depends-on: T40, T41, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T50` Add synthetic local seed fixtures spanning the approved table families — agent, complexity: simple, depends-on: T41, T42, T43, T44, T45, T46, T47, T48, T49, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T51` Seed the backend semantic asset allowlist from the approved catalog release — agent, complexity: simple, depends-on: T22, T41, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T52` Add stable current-member and room-owner authorization helpers — agent, complexity: complex, depends-on: T42, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T53` Add profile visibility and direct-write-denial RLS policies — agent, complexity: complex, depends-on: T41, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T54` Add room, membership, and invitation RLS policies — agent, complexity: complex, depends-on: T42, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T55` Add room-event read and direct-write-denial RLS policies — agent, complexity: complex, depends-on: T43, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T56` Add presence and movement RLS policies — agent, complexity: complex, depends-on: T44, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T57` Add push-device write-only client policies and protected read grants — agent, complexity: complex, depends-on: T45, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T58` Add block, report, and safety-audit RLS policies — agent, complexity: complex, depends-on: T46, T47, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T59` Add deletion-job access-denial and protected-operation grants — agent, complexity: complex, depends-on: T49, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Database operations
+
+- [ ] `T60` Implement optimistic-revision profile creation and update with focused pgTAP tests — agent, complexity: complex, depends-on: T41, T48, T51, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T61` Implement transactional room creation with owner membership and first invite — agent, complexity: complex, depends-on: T42, T48, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T62` Implement owner-only room-invitation creation and replacement — agent, complexity: complex, depends-on: T42, T48, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T63` Implement idempotent room-invitation revocation — agent, complexity: simple, depends-on: T42, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T64` Implement transactional invitation join with expiry, use-limit, and capacity enforcement — agent, complexity: complex, depends-on: T42, T48, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T65` Implement current-member room mute updates — agent, complexity: simple, depends-on: T42, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T66` Implement room leave with owner-departure protection and presence cleanup — agent, complexity: complex, depends-on: T42, T44, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T67` Implement atomic room-ownership transfer — agent, complexity: complex, depends-on: T42, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T68` Implement owner-only member removal with immediate presence cleanup — agent, complexity: complex, depends-on: T42, T44, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T69` Implement owner-only room deletion marking and immediate access revocation — agent, complexity: complex, depends-on: T42, T44, T47, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T70` Implement scheduled permanent room purge after the approved policy window — agent, complexity: complex, depends-on: T8, T69, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T71` Implement validated, idempotent, sequential room-event submission — agent, complexity: complex, depends-on: T43, T44, T46, T48, T51, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T72` Implement selected-room presence opening with deterministic spawn reset — agent, complexity: complex, depends-on: T44, T48, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T73` Implement presence lease heartbeat renewal from server time — agent, complexity: simple, depends-on: T44, T48, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T74` Implement best-effort presence close with last-session position cleanup — agent, complexity: simple, depends-on: T44, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T75` Implement rate-limited latest-revision bear movement updates — agent, complexity: complex, depends-on: T44, T48, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T76` Implement scheduled expired-presence and orphan-position cleanup — agent, complexity: simple, depends-on: T44, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T77` Implement authenticated push-device registration — agent, complexity: simple, depends-on: T45, T48, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T78` Implement authenticated push-device removal — agent, complexity: simple, depends-on: T45, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T79` Implement shared-room user block creation and removal — agent, complexity: complex, depends-on: T46, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T80` Implement authorized report capture with approved disclosure and retention — agent, complexity: complex, depends-on: T9, T47, T48, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T81` Implement idempotent account-deletion preparation and access denial — agent, complexity: complex, depends-on: T41, T42, T43, T44, T45, T46, T47, T49, T52, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T82` Configure room-event, membership, profile, presence, and movement Realtime publications — agent, complexity: complex, depends-on: T43, T44, T71, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T83` Add adversarial direct-API authorization tests for every protected read and mutation — agent, complexity: complex, depends-on: T53, T54, T55, T56, T57, T58, T59, T60, T61, T62, T63, T64, T65, T66, T67, T68, T69, T71, T72, T73, T74, T75, T77, T78, T79, T80, T81, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T84` Add concurrent room-join and ownership-invariant database tests — agent, complexity: complex, depends-on: T61, T62, T63, T64, T66, T67, T68, T69, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T85` Add eight-sender sequence and idempotency database tests — agent, complexity: complex, depends-on: T71, T82, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T86` Add multi-device presence and movement-revision database tests — agent, complexity: complex, depends-on: T72, T73, T74, T75, T76, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Client data and API boundaries
+
+- [ ] `T87` Implement Keychain storage, Supabase Auth local storage, and installation ID isolation — agent, complexity: complex, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T88` Implement the account-scoped protected SwiftData schema and container — agent, complexity: complex, depends-on: T25, T32, T33, T34, T35, T36, T37, T38, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T89` Implement bounded room-event cache pages, watermarks, and eviction — agent, complexity: complex, depends-on: T33, T34, T88, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T90` Implement durable pending-event and appearance-draft storage — agent, complexity: complex, depends-on: T32, T34, T88, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T91` Implement protected-data locked-state handling without replacing the SwiftData store — agent, complexity: complex, depends-on: T88, T89, T90, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T92` Add the content-free client logging boundary — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T93` Add sanitized API errors, strict DTO decoding, and domain mapping utilities — agent, complexity: complex, depends-on: T32, T33, T34, T35, T36, T37, T38, T92, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T94` Implement the typed profile API adapter — agent, complexity: simple, depends-on: T32, T60, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T95` Implement typed room-list, room-snapshot, member, and profile queries — agent, complexity: complex, depends-on: T33, T54, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T96` Implement the typed invitation API adapter — agent, complexity: simple, depends-on: T33, T61, T62, T63, T64, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T97` Implement the typed membership-administration API adapter — agent, complexity: simple, depends-on: T33, T65, T66, T67, T68, T69, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T98` Implement typed event paging, reconciliation, and submission APIs — agent, complexity: complex, depends-on: T34, T55, T71, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T99` Implement typed presence-snapshot, lease, and movement APIs — agent, complexity: complex, depends-on: T35, T56, T72, T73, T74, T75, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T100` Implement the typed room-scoped Supabase Realtime adapter — agent, complexity: complex, depends-on: T34, T35, T82, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T101` Implement the typed push-device API adapter — agent, complexity: simple, depends-on: T36, T57, T77, T78, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T102` Implement the typed block and report API adapter — agent, complexity: simple, depends-on: T37, T58, T79, T80, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T103` Implement the typed account-deletion API adapter — agent, complexity: simple, depends-on: T37, T59, T81, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## App shell and identity
+
+- [ ] `T104` Implement app routing, dependency construction, and signed-in versus signed-out roots — agent, complexity: complex, depends-on: T25, T32, T33, T34, T35, T36, T37, T38, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T105` Implement Supabase session exchange, restore, refresh, and revocation handling — agent, complexity: complex, depends-on: T29, T87, T93, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T106` Implement nonce-backed native Sign in with Apple coordination — agent, complexity: complex, depends-on: T18, T105, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T107` Implement the global authenticated-session state machine — agent, complexity: complex, depends-on: T104, T105, T106, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T108` Implement onboarding and initial profile creation with the default bear — agent, complexity: complex, depends-on: T39, T94, T107, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T109` Implement sign-out resolution for pending writes and account-scoped cache destruction — agent, complexity: complex, depends-on: T90, T107, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Rooms and invitations
+
+- [ ] `T110` Implement the cached room list and server refresh states — agent, complexity: complex, depends-on: T89, T95, T107, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T111` Implement the room-creation flow — agent, complexity: simple, depends-on: T96, T110, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T112` Implement private invitation generation and iOS share-sheet presentation — agent, complexity: complex, depends-on: T96, T111, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T113` Implement the content-free invitation landing page and Universal Link association file — agent, complexity: complex, depends-on: T10, T20, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T114` Implement invitation deep-link preservation, authentication handoff, join, and private error states — agent, complexity: complex, depends-on: T96, T104, T106, T113, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T115` Implement the room-membership list screen — agent, complexity: simple, depends-on: T95, T110, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T116` Implement owner invitation creation, replacement, and revocation controls — agent, complexity: complex, depends-on: T96, T115, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T117` Implement per-room mute controls — agent, complexity: simple, depends-on: T97, T116, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T118` Implement member room-leave confirmation and owner-protection errors — agent, complexity: simple, depends-on: T97, T117, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T119` Implement ownership-transfer selection and confirmation — agent, complexity: simple, depends-on: T97, T118, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T120` Implement owner member-removal confirmation and access-ended feedback — agent, complexity: simple, depends-on: T97, T119, T196, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T121` Implement owner room-deletion confirmation and closed-room feedback — agent, complexity: simple, depends-on: T97, T120, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Ordered chat and synchronization
+
+- [ ] `T122` Implement the pure event-sequence, deduplication, gap, and pending-reconciliation reducer — agent, complexity: complex, depends-on: T34, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T123` Implement room-scoped Realtime subscription lifecycle ownership — agent, complexity: complex, depends-on: T100, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T124` Implement cached-room startup and the query-subscribe-query catch-up handshake — agent, complexity: complex, depends-on: T89, T95, T98, T122, T123, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T125` Implement durable pending-send reconciliation and explicit idempotent retry — agent, complexity: complex, depends-on: T90, T98, T122, T124, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T126` Implement reconnect and sequence-gap recovery behavior — agent, complexity: complex, depends-on: T91, T124, T125, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T127` Implement the main room shell with compact and expanded chat-panel states — agent, complexity: complex, depends-on: T17, T104, T110, T124, T196, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T128` Implement chronological chat history with newest-first loading and older-page pagination — agent, complexity: complex, depends-on: T98, T124, T127, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T129` Implement the text composer with sending, committed, failed, and retry states — agent, complexity: complex, depends-on: T98, T125, T127, T128, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Presence, movement, and room rendering
+
+- [ ] `T130` Implement server-time presence expiry and multi-device grouping reduction — agent, complexity: complex, depends-on: T35, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T131` Implement foreground presence open, heartbeat, close, background, and room-switch lifecycle — agent, complexity: complex, depends-on: T99, T100, T124, T130, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T132` Integrate the active-bear roster and presence-degraded room state — agent, complexity: complex, depends-on: T127, T131, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T133` Implement the versioned room-layout decoder and walkable-map geometry — agent, complexity: complex, depends-on: T22, T25, T35, T39, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T134` Implement fixed-speed movement interpolation and deterministic depth projection — agent, complexity: complex, depends-on: T35, T133, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T135` Implement immediate local movement with serialized latest-wins destination submission — agent, complexity: complex, depends-on: T99, T131, T134, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T136` Implement bundled asset-catalog loading, compatibility validation, and safe fallbacks — agent, complexity: complex, depends-on: T22, T32, T39, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T137` Implement layered bear texture composition and reusable BearNode rendering — agent, complexity: complex, depends-on: T136, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T138` Implement the SpriteKit room scene with one-to-eight active bears and current-user marker — agent, complexity: complex, depends-on: T132, T133, T137, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T139` Implement bear-first hit testing and destination-marker feedback — agent, complexity: complex, depends-on: T135, T138, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T140` Implement attached name and speech layout with bounded overlap avoidance — agent, complexity: complex, depends-on: T138, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T141` Integrate local and remote movement, scale, and z-order into the room scene — agent, complexity: complex, depends-on: T134, T135, T138, T139, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T142` Implement named VoiceOver destinations, nearby-bear announcements, and Reduce Motion movement — agent, complexity: complex, depends-on: T17, T140, T141, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Bear customization
+
+- [ ] `T143` Implement appearance-draft editing, live preview, validation, save, and cancel UI — agent, complexity: complex, depends-on: T90, T108, T136, T137, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T144` Implement optimistic-revision appearance save and active-room profile refresh — agent, complexity: complex, depends-on: T94, T100, T124, T143, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Actions, reactions, and activity
+
+- [ ] `T145` Implement versioned action and reaction catalog loading with plain-language descriptions — agent, complexity: complex, depends-on: T22, T34, T39, T136, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T146` Implement emote and non-targeted group-action browsing and submission — agent, complexity: complex, depends-on: T98, T129, T145, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T147` Implement active-target selection, confirmation, and target-expiry recovery — agent, complexity: complex, depends-on: T132, T146, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T148` Implement provided-reaction selection and referenced-event submission — agent, complexity: complex, depends-on: T98, T128, T145, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T149` Implement serial live-only action playback and explicit replay queueing — agent, complexity: complex, depends-on: T122, T145, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T150` Integrate action and reaction animation final states with bear movement — agent, complexity: complex, depends-on: T137, T138, T141, T149, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T151` Implement authoritative latest-20 recent activity and replay eligibility — agent, complexity: complex, depends-on: T124, T127, T145, T149, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T152` Implement malformed-event, unknown-asset, and animation-failure fallbacks — agent, complexity: complex, depends-on: T140, T145, T150, T151, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Notifications
+
+- [ ] `T153` Implement shared Edge Function authentication, database, error, and content-free logging utilities — agent, complexity: complex, depends-on: T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T154` Implement the APNs token-authentication and request adapter — agent, complexity: complex, depends-on: T18, T153, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T155` Implement generic notification filtering and APNs delivery from committed events — agent, complexity: complex, depends-on: T44, T45, T46, T82, T154, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T156` Implement opt-in detailed notification previews within the approved policy — agent, complexity: complex, depends-on: T11, T155, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T157` Implement APNs permission prompting, token lifecycle, and device registration — agent, complexity: complex, depends-on: T16, T18, T101, T107, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T158` Implement notification-preview settings and room-mute state presentation — agent, complexity: simple, depends-on: T101, T117, T157, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T159` Implement opaque notification routing with authenticated membership recheck and catch-up — agent, complexity: complex, depends-on: T104, T124, T157, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Safety and deletion
+
+- [ ] `T160` Implement block and unblock controls without rewriting shared history — agent, complexity: complex, depends-on: T102, T115, T132, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T161` Implement exact-disclosure report confirmation, submission, status, and retry UI — agent, complexity: complex, depends-on: T9, T102, T128, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T162` Implement the approved least-privilege safety-review boundary and audited status mutation — agent, complexity: complex, depends-on: T13, T47, T58, T80, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T163` Document the safety-review and moderation operations runbook — agent, complexity: simple, depends-on: T13, T162, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T164` Implement idempotent account deletion across PostgreSQL and Supabase Auth — agent, complexity: complex, depends-on: T81, T103, T153, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T165` Implement scheduled forward retry for partial account-deletion jobs — agent, complexity: complex, depends-on: T49, T164, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T166` Implement owned-room resolution and final account-deletion settings UI — agent, complexity: complex, depends-on: T103, T109, T121, T164, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Operations and release configuration
+
+- [ ] `T167` Add content-free backend observability checks and production metric definitions — agent, complexity: complex, depends-on: T60, T61, T62, T63, T64, T65, T66, T67, T68, T69, T70, T71, T72, T73, T74, T75, T76, T77, T78, T79, T80, T81, T82, T153, T155, T156, T164, T165, T200, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T168` Add the privacy manifest and approved managed-encryption product copy — agent, complexity: simple, depends-on: T21, T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T169` Add immutable migration and Edge Function deployment automation across environments — agent, complexity: complex, depends-on: T19, T26, T28, T82, T153, T200, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T170` Document the staging backup-restore runbook — agent, complexity: simple, depends-on: T19, T169, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T171` Document Supabase and APNs outage recovery and production rollback — agent, complexity: simple, depends-on: T19, T167, T169, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T172` Apply the approved production rate-limit configuration — agent, complexity: simple, depends-on: T23, T48, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T173` Apply the approved measured cache budget — agent, complexity: simple, depends-on: T24, T39, T89, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Cross-component verification
+
+- [ ] `T174` Add automated dropped, duplicated, delayed, reordered, background, and reconnect synchronization tests — agent, complexity: complex, depends-on: T100, T122, T123, T124, T125, T126, T149, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T175` Add offline, protected-cache, pagination, eviction, sign-out, removal, corruption, and restore integration tests — agent, complexity: complex, depends-on: T91, T109, T124, T125, T126, T127, T128, T129, T196, T197, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T176` Add payload and DTO fuzz tests for malformed Unicode, JSON, IDs, references, versions, and remote assets — agent, complexity: complex, depends-on: T51, T55, T71, T93, T98, T136, T152, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T177` Add concurrent event-commit and Realtime-propagation load measurements — agent, complexity: complex, depends-on: T71, T82, T98, T100, T124, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T178` Add presence-heartbeat and movement-write timing and load measurements — agent, complexity: complex, depends-on: T72, T73, T74, T75, T76, T99, T100, T131, T135, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T179` Add oldest-device room-rendering, interaction, and cache performance measurements — agent, complexity: complex, depends-on: T89, T127, T138, T141, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T180` Add authentication, session restoration, cancellation, revocation, and sign-out UI tests — agent, complexity: complex, depends-on: T106, T107, T108, T109, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T181` Add room, invitation, membership, and owner-administration UI tests — agent, complexity: complex, depends-on: T114, T115, T116, T117, T118, T119, T120, T121, T196, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T182` Add blocking, reporting, room deletion, and account-deletion UI tests — agent, complexity: complex, depends-on: T160, T161, T166, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T183` Add automated accessibility assertions across onboarding, room, chat, movement, actions, editor, membership, and safety — agent, complexity: complex, depends-on: T108, T128, T142, T143, T151, T158, T160, T161, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T184` Add supported-device visual snapshots for room depth, movement, speech, panels, actions, editor, and settings — agent, complexity: complex, depends-on: T127, T138, T140, T141, T143, T150, T151, T158, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T185` Complete the requirements-traceability matrix with final automated and manual verification references — agent, complexity: simple, depends-on: T30, T174, T175, T176, T177, T178, T179, T180, T181, T182, T183, T184, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Physical-device and release gates
+
+- [ ] `T186` Run and record the staging architecture spike across auth, RLS, events, Realtime, presence, movement, APNs, SwiftData, deletion, and SpriteKit — manual, depends-on: T18, T19, T83, T85, T86, T91, T106, T141, T155, T157, T159, T164, T197, T200, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T187` Verify first, returning, second-device, revoked, cancelled, refreshed, and cross-environment authentication on physical iPhones — manual, depends-on: T18, T19, T180, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T188` Verify presence and movement behavior against the 2/5/30-second and 0.2/1-second targets on physical iPhones — manual, depends-on: T18, T19, T141, T178, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T189` Verify generic, detailed, muted, blocked, active-room, stale-token, and delayed APNs scenarios in staging — manual, depends-on: T18, T19, T155, T156, T157, T158, T159, T200, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T190` Complete the production privacy and security review with log, payload, role, encryption, and binary inspection — manual, depends-on: T21, T83, T163, T167, T168, T176, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T191` Complete the manual VoiceOver, Dynamic Type, contrast, Reduce Motion, keyboard, and non-color accessibility audit — manual, depends-on: T142, T183, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T192` Complete physical-device visual acceptance against the approved room mock and asset pack — manual, depends-on: T22, T184, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T193` Execute staging restore, migration rollback, secret rotation, outage, cleanup-delay, alert, and production rollback drills — manual, depends-on: T163, T170, T171, T198, T199, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T194` Complete App Store privacy, messaging-safety, account-deletion, and policy review — manual, depends-on: T21, T190, T191, T192, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T195` Run the monitored TestFlight beta and approve production launch readiness — manual, depends-on: T172, T173, T185, T186, T187, T188, T189, T190, T191, T192, T193, T194, T203, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+
+## Additional audited review boundaries
+
+- [ ] `T196` Implement membership-revocation handling and protected room-cache cleanup — agent, complexity: complex, depends-on: T91, T123, T124, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T197` Implement corrupt-cache quarantine and canonical server restoration — agent, complexity: complex, depends-on: T88, T89, T90, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T198` Document the environment secret-rotation runbook — agent, complexity: simple, depends-on: T19, T169, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T199` Document budget alerts and Supabase provider-status monitoring — agent, complexity: simple, depends-on: T19, T167, T169, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T200` Configure the signed content-minimized database webhook for committed events — agent, complexity: complex, depends-on: T71, T155, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md

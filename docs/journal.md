@@ -9,3 +9,15 @@ Initialized project scaffold (AGENTS.md, CLEANCODE.md, decisions log, TODO). Not
 ## 2026-09-19 — product requirements defined
 
 Created `docs/designs/product-spec.md` for the Bear Chat MVP. It defines the in-iMessage room experience, text chat, bear actions and reactions, detailed avatar customization, recent activity, fallback previews, privacy, accessibility, and explicit MVP exclusions. The next step is human review and approval before technical planning.
+
+## 2026-09-20 — main room product mock created
+
+Created `docs/designs/bear-chat-room-mock.png`, a high-fidelity portrait iPhone concept for the main Bear Chat room. It keeps the shared room and saved iMessage chat visible together, includes four customizable bears based on the supplied visual reference, identifies the current user's bear, and surfaces messaging, replay, emote, action, and reaction controls. The mock is ready for visual review; the product spec remains awaiting approval.
+
+## 2026-09-20 — standalone messenger architecture and LLD drafted
+
+Reframed Bear Chat from an iMessage extension into a standalone private iPhone messenger with Sign in with Apple, managed encryption, Supabase-backed room history, active-only bears, and tap-to-destination movement. Revised the product spec, created the larger Club Penguin-inspired room mock and standalone HLD, and derived `docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md`. The LLD pins planned app/backend files, data invariants, RPCs, synchronization, movement, failure handling, and test ownership while leaving policy and platform gaps as explicit open questions. Independent HLD review was attempted but the reviewer task was cancelled, so the spec, mock, HLD, and LLD remain pending manual approval.
+
+## 2026-09-20 — standalone implementation plan audited
+
+Expanded `TODO.md` into a coverage-audited 200-task plan for the full standalone app. The plan preserves the existing approval tasks, surfaces every unresolved LLD product decision as manual work, separates schema families and administrative mutations at review boundaries, and assigns explicit tasks for failure handling, security, performance, accessibility, operations, and release verification. The dependency graph intentionally leaves implementation blocked until the product spec, mock, HLD, and LLD are approved; the validator reports `T1` and `T2` manual-ready and no agent-ready tasks.
