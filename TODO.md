@@ -7,32 +7,29 @@ Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simp
 ## Product and design approval
 
 - [x] `T1` Review and approve the Bear Chat product spec — manual, design: docs/designs/product-spec.md
-- [ ] `T2` Review the enlarged moving-bear room mock and provide visual feedback — manual, design: docs/designs/bear-chat-room-mock-v2.png
-- [ ] `T3` Review and approve the standalone Bear Chat high-level design — manual, depends-on: T1, T2, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
-- [ ] `T4` Review and approve the LLD baseline after resolving its preimplementation questions — manual, depends-on: T3, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T5` Confirm the minimum iOS version and supported iPhone boundary — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T6` Decide whether owner-only forming and remaining rooms are valid product states — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T7` Decide how owned rooms must be resolved before account deletion — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T8` Approve the room-deletion purge window and user-facing deletion semantics — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T9` Approve report categories, disclosed context, reviewer fields, and retention policy — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T10` Choose the fresh-install invitation recovery behavior — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T11` Approve detailed-notification event kinds, content limits, and privacy copy — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T12` Confirm whether blocking is symmetric for interactions and notifications — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T13` Choose the least-privilege safety-review interface for beta and production — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T14` Approve a foreground committed-message delivery latency objective — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T15` Approve display-name, room-name, message, invitation-expiry, and invitation-use limits — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T16` Choose when the app requests notification permission — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T17` Confirm supported orientation and compact-versus-expanded room panel behavior — manual, depends-on: T3, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [x] `T2` Review the enlarged moving-bear room mock and provide visual feedback — manual, design: docs/designs/bear-chat-room-mock-v2.png
+- [x] `T3` Review and approve the standalone Bear Chat high-level design — manual, depends-on: T1, T2, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [x] `T4` Review and approve the LLD baseline after resolving its preimplementation questions — manual, depends-on: T3, T5, T6, T7, T8, T10, T11, T14, T15, T16, T17, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [x] `T5` Confirm the minimum iOS version and supported iPhone boundary — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: iOS 17 confirmed)*
+- [x] `T6` Decide whether owner-only forming and remaining rooms are valid product states — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: no one-member rooms; creation requires adding at least one other person)*
+- [x] `T7` Decide how owned rooms must be resolved before account deletion — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: user must transfer or delete owned rooms first)*
+- [x] `T8` Approve the room-deletion purge window and user-facing deletion semantics — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: immediate permanent purge with confirmation warning)*
+- [ ] `T9` Approve report categories, disclosed context, reviewer fields, and retention policy — manual *(Deferred: not required for internal TestFlight)*
+- [x] `T10` Choose the fresh-install invitation recovery behavior — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: re-tap invite link after install)*
+- [x] `T11` Approve detailed-notification event kinds, content limits, and privacy copy — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: follow messaging app norms — sender name + truncated text for messages, brief description for actions/reactions)*
+- [ ] `T12` Confirm whether blocking is symmetric for interactions and notifications — manual *(Deferred: blocking deferred entirely for internal TestFlight)*
+- [ ] `T13` Choose the least-privilege safety-review interface for beta and production — manual *(Deferred: not required for internal TestFlight)*
+- [x] `T14` Approve a foreground committed-message delivery latency objective — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: best effort, measure during spike)*
+- [x] `T15` Approve display-name, room-name, message, invitation-expiry, and invitation-use limits — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: 30 char display name, 50 char room name, 1000 char message, 7-day invite expiry, no use limit)*
+- [x] `T16` Choose when the app requests notification permission — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: during onboarding)*
+- [x] `T17` Confirm supported orientation and compact-versus-expanded room panel behavior — manual, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: portrait only, drag to expand, follow mock proportions)*
 
 ## External setup and policy
 
 - [ ] `T18` Provision Apple identifiers, Sign in with Apple, APNs credentials, and associated-domain capabilities — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T19` Provision development, staging, and production Supabase projects with Apple authentication and environment secrets — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T19` Provision development, staging, and production Supabase projects with Apple authentication and environment secrets — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(In progress: dev project created, API URL and keys saved. Apple Auth config blocked on T18)*
 - [ ] `T20` Provision the invitation domain, TLS hosting, and Universal Link association hosting — manual, depends-on: T4, T10, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T21` Publish approved privacy, safety, moderation, non-E2EE, and deletion policies — manual, depends-on: T4, T8, T9, T11, T12, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T201` Create the App Store Connect app listing (name, bundle ID, SKU) and configure TestFlight internal tester group — manual, depends-on: T18, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
-- [ ] `T202` Add an Xcode archive and TestFlight upload lane to CI — agent, complexity: complex, depends-on: T27, T201, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
-- [ ] `T203` Configure TestFlight external testing group and submit first build for Beta App Review — manual, depends-on: T21, T168, T202, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
 - [ ] `T22` Provide the approved MVP room, appearance, action, reaction, and audio asset pack — manual, depends-on: T2, T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T23` Approve production rate-limit values from measured event, presence, and movement load — manual, depends-on: T177, T178, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T24` Approve the production cache budget from offline and oldest-device measurements — manual, depends-on: T175, T179, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
@@ -263,3 +260,6 @@ Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simp
 - [ ] `T198` Document the environment secret-rotation runbook — agent, complexity: simple, depends-on: T19, T169, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T199` Document budget alerts and Supabase provider-status monitoring — agent, complexity: simple, depends-on: T19, T167, T169, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T200` Configure the signed content-minimized database webhook for committed events — agent, complexity: complex, depends-on: T71, T155, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T201` Create the App Store Connect app listing (name, bundle ID, SKU) and configure TestFlight internal tester group — manual, depends-on: T18, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [ ] `T202` Add an Xcode archive and TestFlight upload lane to CI — agent, complexity: complex, depends-on: T27, T201, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md
+- [ ] `T203` Configure TestFlight external testing group and submit first build for Beta App Review — manual, depends-on: T21, T168, T202, design: docs/designs/2026-09-20-bear-chat-standalone-hld.md

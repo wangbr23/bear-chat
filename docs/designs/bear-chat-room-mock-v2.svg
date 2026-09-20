@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="887" height="1774" viewBox="0 0 887 1774">
   <defs>
     <clipPath id="upperRoom" clipPathUnits="userSpaceOnUse">
-      <rect x="0" y="0" width="887" height="500"/>
+      <rect x="0" y="0" width="887" height="415"/>
     </clipPath>
     <clipPath id="bearSam" clipPathUnits="userSpaceOnUse">
       <path d="M108 490 C91 481 78 494 82 515 C65 535 57 582 61 650 C64 739 71 802 108 824 C137 842 192 842 223 825 C260 803 270 744 269 662 C268 587 254 544 231 526 C234 503 216 484 195 497 C168 484 134 484 108 490 Z"/>
@@ -23,10 +23,10 @@
       <stop offset="0" stop-color="#fff7de"/>
       <stop offset="1" stop-color="#ead8b3"/>
     </radialGradient>
-    <linearGradient id="wallBlend" gradientUnits="userSpaceOnUse" x1="0" y1="305" x2="0" y2="500">
+    <linearGradient id="wallBlend" gradientUnits="userSpaceOnUse" x1="0" y1="285" x2="0" y2="415">
       <stop offset="0" stop-color="#f0dfc6" stop-opacity="0"/>
-      <stop offset="0.42" stop-color="#f0dfc6" stop-opacity="0.2"/>
-      <stop offset="0.78" stop-color="#f0dfc6" stop-opacity="0.88"/>
+      <stop offset="0.38" stop-color="#f0dfc6" stop-opacity="0.15"/>
+      <stop offset="0.62" stop-color="#f0dfc6"/>
       <stop offset="1" stop-color="#f0dfc6"/>
     </linearGradient>
     <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
@@ -43,7 +43,7 @@
   <!-- Preserve the original navigation and blend its illustrated wall into the larger room. -->
   <rect x="0" y="180" width="887" height="435" fill="#f0dfc6"/>
   <image href="bear-chat-room-mock.png" x="0" y="0" width="887" height="1774" clip-path="url(#upperRoom)"/>
-  <rect x="0" y="305" width="887" height="195" fill="url(#wallBlend)"/>
+  <rect x="0" y="285" width="887" height="130" fill="url(#wallBlend)"/>
   <rect x="743" y="92" width="126" height="80" rx="40" fill="#ffffff" stroke="#e8e5e0"/>
   <circle cx="805" cy="132" r="4" fill="#2d78e7"/>
   <circle cx="817" cy="132" r="4" fill="#2d78e7"/>
