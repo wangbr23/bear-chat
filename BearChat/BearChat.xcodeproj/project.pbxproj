@@ -1,0 +1,850 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5C3E653F428B30EFB7720FFC /* AuthenticationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05407A97B20B4479E0605C0 /* AuthenticationUITests.swift */; };
+		773F7B44D9DABEF1BA1A7672 /* ProductLimitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EB18F0881AEE5A9179D035 /* ProductLimitsTests.swift */; };
+		8FF3381706FA0A8D80953AAF /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9D70193C3C96C5EC2186A4B1 /* Supabase */; };
+		98C5042A8550DFD42268E8FB /* BearChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987F0C37CC40C0FAA7BEE9F5 /* BearChatApp.swift */; };
+		CB52211D50F2631F2D29C938 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8340A84DB95D75E1900A9AF8 /* RootView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5AE52300057473A55275D4A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 620CC36D7DF4E50A0C83C704 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 734391EF43492FE57B0D4840;
+			remoteInfo = BearChat;
+		};
+		6ACA45AAE0BD50FE819A31B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 620CC36D7DF4E50A0C83C704 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 734391EF43492FE57B0D4840;
+			remoteInfo = BearChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09ED10A68224EC216243A79F /* BearChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BearChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		256B07BAA48213545D0D9C52 /* BearChat.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BearChat.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44EB18F0881AEE5A9179D035 /* ProductLimitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLimitsTests.swift; sourceTree = "<group>"; };
+		4CD1BEE33BD51D2273FA8F54 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		8340A84DB95D75E1900A9AF8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		987F0C37CC40C0FAA7BEE9F5 /* BearChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearChatApp.swift; sourceTree = "<group>"; };
+		A3AC2C0F3D071B3B9024DC21 /* BearChat.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BearChat.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEB32A8B286CA5D179DF21DE /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		E05407A97B20B4479E0605C0 /* AuthenticationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUITests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4B5B973F2D828EA74E77AE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FF3381706FA0A8D80953AAF /* Supabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11118B7AC7C0D157A17A9FE5 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		1ABB36EFD11A58C3B9688BFC /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		1C371A110B9CBD4F3000BE53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09ED10A68224EC216243A79F /* BearChat.app */,
+				A3AC2C0F3D071B3B9024DC21 /* BearChat.xctest */,
+				256B07BAA48213545D0D9C52 /* BearChat.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24A35E8C939F5CB30595305C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1ABB36EFD11A58C3B9688BFC /* DTO */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		270DEE489CB11158E27C2302 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				2BD04C9732D0AD3497D9CE5E /* Actions */,
+				3FD6BA0F57DD0F9FC3129F4B /* Activity */,
+				A129B27E226062DEAD995603 /* BearEditor */,
+				D6AB97BCA7788597E0FB49BD /* Membership */,
+				B78E8701C7F9874FC4A528C6 /* Onboarding */,
+				9D3E2828A1244D495EEE0DB4 /* Room */,
+				DC5C0260E21825A811B34916 /* RoomList */,
+				DD3E9D99C176580B78634DCC /* Safety */,
+				7C0150C072C20E8E3809F9D5 /* Settings */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		2B93E7166DA6AEC053EA49E1 /* Safety */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Safety;
+			sourceTree = "<group>";
+		};
+		2BD04C9732D0AD3497D9CE5E /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		2E3BC5B06DB3E06AB5A752B3 /* RoomSync */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RoomSync;
+			sourceTree = "<group>";
+		};
+		2F1873920361D9F378A827A9 /* SecureStorage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SecureStorage;
+			sourceTree = "<group>";
+		};
+		3189927E5BD6EFB81CB8A38D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				24A35E8C939F5CB30595305C /* API */,
+				D162905DB5FD03121FB8CA3B /* Persistence */,
+				2F1873920361D9F378A827A9 /* SecureStorage */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3494D445BB0AA69F54D03407 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				E2757EFEE4655C053E3641DA /* Appearance */,
+				B66BD51EE28DA79B2203E62E /* Layout */,
+				A861B5B74840CDEAEE0DCD36 /* Room */,
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+		3FD6BA0F57DD0F9FC3129F4B /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		44B211437AA77987637A3A15 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		4BEEC1A975D2A14D7C29D59B /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				4CD1BEE33BD51D2273FA8F54 /* Development.xcconfig */,
+				DEB32A8B286CA5D179DF21DE /* Production.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		514D0454E7C7FA1E0AEB1F3F /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Playback;
+			sourceTree = "<group>";
+		};
+		593B4DC19287066EAC7EDD56 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		647937751CB56A5EDBA922B3 /* BearChatAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E05407A97B20B4479E0605C0 /* AuthenticationUITests.swift */,
+			);
+			path = BearChatAppUITests;
+			sourceTree = "<group>";
+		};
+		75421C92CCC2867AD896A08C /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		7C0150C072C20E8E3809F9D5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7ED1BF41BACFA1071B468DE6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				987F0C37CC40C0FAA7BEE9F5 /* BearChatApp.swift */,
+				8340A84DB95D75E1900A9AF8 /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8476B74176B6FCC7D9950A00 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8C54D7468F99E3410CB027B1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B0A09BC1BF0C8370BDDB0CA8 /* Movement */,
+				44B211437AA77987637A3A15 /* Notifications */,
+				514D0454E7C7FA1E0AEB1F3F /* Playback */,
+				A4457B662E9781410768E064 /* Presence */,
+				2E3BC5B06DB3E06AB5A752B3 /* RoomSync */,
+				2B93E7166DA6AEC053EA49E1 /* Safety */,
+				97C76DFC04ABBC5394F44F40 /* Session */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9216F90E13D0777A2334A1D2 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				11118B7AC7C0D157A17A9FE5 /* Constants */,
+				593B4DC19287066EAC7EDD56 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		97C76DFC04ABBC5394F44F40 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		9D3E2828A1244D495EEE0DB4 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		9D5EB1DB0E2D168EAC2A7644 = {
+			isa = PBXGroup;
+			children = (
+				F025241BA5B9E9D2358F719C /* BearChatApp */,
+				E88C45CBD4674812B5547481 /* BearChatAppTests */,
+				647937751CB56A5EDBA922B3 /* BearChatAppUITests */,
+				4BEEC1A975D2A14D7C29D59B /* Configuration */,
+				1C371A110B9CBD4F3000BE53 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A129B27E226062DEAD995603 /* BearEditor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BearEditor;
+			sourceTree = "<group>";
+		};
+		A4457B662E9781410768E064 /* Presence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presence;
+			sourceTree = "<group>";
+		};
+		A861B5B74840CDEAEE0DCD36 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		B0A09BC1BF0C8370BDDB0CA8 /* Movement */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Movement;
+			sourceTree = "<group>";
+		};
+		B66BD51EE28DA79B2203E62E /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		B78E8701C7F9874FC4A528C6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D162905DB5FD03121FB8CA3B /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				8476B74176B6FCC7D9950A00 /* Models */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		D3815B8288AFA31E070C7305 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D6AB97BCA7788597E0FB49BD /* Membership */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Membership;
+			sourceTree = "<group>";
+		};
+		D85D0DF006CD47FDBB7D022F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				44EB18F0881AEE5A9179D035 /* ProductLimitsTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		DC5C0260E21825A811B34916 /* RoomList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RoomList;
+			sourceTree = "<group>";
+		};
+		DD3E9D99C176580B78634DCC /* Safety */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Safety;
+			sourceTree = "<group>";
+		};
+		E2757EFEE4655C053E3641DA /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		E88C45CBD4674812B5547481 /* BearChatAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED0FC65476CE1946A44208A2 /* Data */,
+				D85D0DF006CD47FDBB7D022F /* Domain */,
+				75421C92CCC2867AD896A08C /* Fixtures */,
+				FEC49FFF05A6FECF0D2A23A1 /* Rendering */,
+				D3815B8288AFA31E070C7305 /* Services */,
+			);
+			path = BearChatAppTests;
+			sourceTree = "<group>";
+		};
+		ED0FC65476CE1946A44208A2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F025241BA5B9E9D2358F719C /* BearChatApp */ = {
+			isa = PBXGroup;
+			children = (
+				7ED1BF41BACFA1071B468DE6 /* App */,
+				3189927E5BD6EFB81CB8A38D /* Data */,
+				9216F90E13D0777A2334A1D2 /* Domain */,
+				270DEE489CB11158E27C2302 /* Features */,
+				3494D445BB0AA69F54D03407 /* Rendering */,
+				8C54D7468F99E3410CB027B1 /* Services */,
+			);
+			path = BearChatApp;
+			sourceTree = "<group>";
+		};
+		FEC49FFF05A6FECF0D2A23A1 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BD093FB6BCA7625F42388BC /* BearChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35A45CC63A0E8E50CC731AD6 /* Build configuration list for PBXNativeTarget "BearChatUITests" */;
+			buildPhases = (
+				3736A14F42D730D73C08C3FE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				325FB034319EC5E306A4957B /* PBXTargetDependency */,
+			);
+			name = BearChatUITests;
+			packageProductDependencies = (
+			);
+			productName = BearChatUITests;
+			productReference = 256B07BAA48213545D0D9C52 /* BearChat.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		734391EF43492FE57B0D4840 /* BearChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B65CAA1001BD5F855C8149D4 /* Build configuration list for PBXNativeTarget "BearChat" */;
+			buildPhases = (
+				48CB46AC03BF6272F41A1CAE /* Sources */,
+				C4B5B973F2D828EA74E77AE5 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BearChat;
+			packageProductDependencies = (
+				9D70193C3C96C5EC2186A4B1 /* Supabase */,
+			);
+			productName = BearChat;
+			productReference = 09ED10A68224EC216243A79F /* BearChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF96B8F83451B50D96DBD0A6 /* BearChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABD76878E14D3FAE6A3F0896 /* Build configuration list for PBXNativeTarget "BearChatTests" */;
+			buildPhases = (
+				71C67027B4BC860770020176 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3998A7D94A9C174B6B627CE8 /* PBXTargetDependency */,
+			);
+			name = BearChatTests;
+			packageProductDependencies = (
+			);
+			productName = BearChatTests;
+			productReference = A3AC2C0F3D071B3B9024DC21 /* BearChat.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		620CC36D7DF4E50A0C83C704 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					0BD093FB6BCA7625F42388BC = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 734391EF43492FE57B0D4840;
+					};
+					734391EF43492FE57B0D4840 = {
+						ProvisioningStyle = Automatic;
+					};
+					FF96B8F83451B50D96DBD0A6 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 274B5FDC064B94B165E7750C /* Build configuration list for PBXProject "BearChat" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9D5EB1DB0E2D168EAC2A7644;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6BB27D5526E6A0C78310A878 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1C371A110B9CBD4F3000BE53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				734391EF43492FE57B0D4840 /* BearChat */,
+				FF96B8F83451B50D96DBD0A6 /* BearChatTests */,
+				0BD093FB6BCA7625F42388BC /* BearChatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3736A14F42D730D73C08C3FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3E653F428B30EFB7720FFC /* AuthenticationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48CB46AC03BF6272F41A1CAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98C5042A8550DFD42268E8FB /* BearChatApp.swift in Sources */,
+				CB52211D50F2631F2D29C938 /* RootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71C67027B4BC860770020176 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				773F7B44D9DABEF1BA1A7672 /* ProductLimitsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		325FB034319EC5E306A4957B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 734391EF43492FE57B0D4840 /* BearChat */;
+			targetProxy = 5AE52300057473A55275D4A8 /* PBXContainerItemProxy */;
+		};
+		3998A7D94A9C174B6B627CE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 734391EF43492FE57B0D4840 /* BearChat */;
+			targetProxy = 6ACA45AAE0BD50FE819A31B8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		29E1DE70C124F915232DB03B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEB32A8B286CA5D179DF21DE /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2ABFA75B64546D75C7E3E32B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BearChatApp/Resources/BearChat.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TBTS7J4B2X;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradleywang.BearChat;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3248DC30DD4599AE830CEADD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BearChatApp/Resources/BearChat.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TBTS7J4B2X;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradleywang.BearChat;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4CEFF2B092E868FB5B605528 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradleywang.BearChatUITests;
+				PRODUCT_MODULE_NAME = BearChatUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TEST_TARGET_NAME = BearChat;
+			};
+			name = Debug;
+		};
+		A1026EE4AE53BB61583C6043 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradleywang.BearChatUITests;
+				PRODUCT_MODULE_NAME = BearChatUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TEST_TARGET_NAME = BearChat;
+			};
+			name = Release;
+		};
+		B5033D42C907FC680E90D87B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradleywang.BearChatTests;
+				PRODUCT_MODULE_NAME = BearChatTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BearChat.app/BearChat";
+			};
+			name = Debug;
+		};
+		C5CE7C97AC98595960DCD1FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradleywang.BearChatTests;
+				PRODUCT_MODULE_NAME = BearChatTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BearChat.app/BearChat";
+			};
+			name = Release;
+		};
+		CEA6F2FD0777224E5C1C9FB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CD1BEE33BD51D2273FA8F54 /* Development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		274B5FDC064B94B165E7750C /* Build configuration list for PBXProject "BearChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA6F2FD0777224E5C1C9FB7 /* Debug */,
+				29E1DE70C124F915232DB03B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		35A45CC63A0E8E50CC731AD6 /* Build configuration list for PBXNativeTarget "BearChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CEFF2B092E868FB5B605528 /* Debug */,
+				A1026EE4AE53BB61583C6043 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		ABD76878E14D3FAE6A3F0896 /* Build configuration list for PBXNativeTarget "BearChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5033D42C907FC680E90D87B /* Debug */,
+				C5CE7C97AC98595960DCD1FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B65CAA1001BD5F855C8149D4 /* Build configuration list for PBXNativeTarget "BearChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3248DC30DD4599AE830CEADD /* Debug */,
+				2ABFA75B64546D75C7E3E32B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6BB27D5526E6A0C78310A878 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 2.26.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D70193C3C96C5EC2186A4B1 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BB27D5526E6A0C78310A878 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 620CC36D7DF4E50A0C83C704 /* Project object */;
+}

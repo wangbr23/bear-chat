@@ -1,0 +1,6 @@
+// Development environment — local or cloud dev Supabase project.
+#include "Base.xcconfig"
+#include? "Secrets.xcconfig"
+
+SUPABASE_URL = https:$()/$()/YOUR_DEV_PROJECT.supabase.co
+SUPABASE_ANON_KEY = YOUR_DEV_ANON_KEY

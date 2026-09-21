@@ -21,3 +21,7 @@ Reframed Bear Chat from an iMessage extension into a standalone private iPhone m
 ## 2026-09-20 — standalone implementation plan audited
 
 Expanded `TODO.md` into a coverage-audited 200-task plan for the full standalone app. The plan preserves the existing approval tasks, surfaces every unresolved LLD product decision as manual work, separates schema families and administrative mutations at review boundaries, and assigns explicit tasks for failure handling, security, performance, accessibility, operations, and release verification. The dependency graph intentionally leaves implementation blocked until the product spec, mock, HLD, and LLD are approved; the validator reports `T1` and `T2` manual-ready and no agent-ready tasks.
+
+## 2026-09-20 — Apple app provisioning completed
+
+Completed `T18`: registered the explicit Bear Chat App ID, enabled Sign in with Apple, Push Notifications, and Associated Domains, configured Bear Chat as the primary Sign in with Apple App ID, provisioned an APNs authentication key, and verified automatic signing by running Bear Chat on a physical iPhone. Supabase Apple authentication setup in `T19` is no longer blocked by Apple provisioning.

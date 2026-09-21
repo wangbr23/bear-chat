@@ -3,3 +3,12 @@
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
 .playwright-mcp/
+
+# Xcode
+xcuserdata/
+DerivedData/
+*.xcscmblueprint
+*.xccheckout
+
+# Local secrets — never commit
+BearChat/Configuration/Secrets.xcconfig

@@ -1,0 +1,83 @@
+name: BearChat
+options:
+  bundleIdPrefix: com.bradleywang
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "27.0"
+  generateEmptyDirectories: true
+
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift
+    exactVersion: 2.26.0
+
+configs:
+  Debug: debug
+  Release: release
+
+configFiles:
+  Debug: Configuration/Development.xcconfig
+  Release: Configuration/Production.xcconfig
+
+targets:
+  BearChat:
+    type: application
+    platform: iOS
+    sources:
+      - path: BearChatApp
+        excludes:
+          - "**/.gitkeep"
+          - "Resources"
+    resources:
+      - path: BearChatApp/Resources
+    dependencies:
+      - package: Supabase
+        product: Supabase
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bradleywang.BearChat
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: 1
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: 1
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: BearChatApp/Resources/BearChat.entitlements
+        SWIFT_STRICT_CONCURRENCY: complete
+    scheme:
+      testTargets:
+        - BearChatTests
+      gatherCoverageData: true
+
+  BearChatTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: BearChatAppTests
+        excludes:
+          - "**/.gitkeep"
+    dependencies:
+      - target: BearChat
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bradleywang.BearChatTests
+        PRODUCT_MODULE_NAME: BearChatTests
+        SWIFT_VERSION: "6.0"
+        GENERATE_INFOPLIST_FILE: true
+
+  BearChatUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: BearChatAppUITests
+        excludes:
+          - "**/.gitkeep"
+    dependencies:
+      - target: BearChat
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bradleywang.BearChatUITests
+        PRODUCT_MODULE_NAME: BearChatUITests
+        SWIFT_VERSION: "6.0"
+        GENERATE_INFOPLIST_FILE: true

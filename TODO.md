@@ -26,8 +26,8 @@ Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simp
 
 ## External setup and policy
 
-- [ ] `T18` Provision Apple identifiers, Sign in with Apple, APNs credentials, and associated-domain capabilities — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T19` Provision development, staging, and production Supabase projects with Apple authentication and environment secrets — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(In progress: dev project created, API URL and keys saved. Apple Auth config blocked on T18)*
+- [x] `T18` Provision Apple identifiers, Sign in with Apple, APNs credentials, and associated-domain capabilities — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [ ] `T19` Provision development, staging, and production Supabase projects with Apple authentication and environment secrets — manual, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(In progress: dev project created, API URL and keys saved. Apple Auth is ready to configure.)*
 - [ ] `T20` Provision the invitation domain, TLS hosting, and Universal Link association hosting — manual, depends-on: T4, T10, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T21` Publish approved privacy, safety, moderation, non-E2EE, and deletion policies — manual, depends-on: T4, T8, T9, T11, T12, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T22` Provide the approved MVP room, appearance, action, reaction, and audio asset pack — manual, depends-on: T2, T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
@@ -36,7 +36,7 @@ Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simp
 
 ## Project foundations
 
-- [ ] `T25` Scaffold the iOS app and test targets with filesystem-synchronized groups and pinned Supabase Swift dependency — agent, complexity: complex, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [x] `T25` Scaffold the iOS app and test targets with filesystem-synchronized groups and pinned Supabase Swift dependency — agent, complexity: complex, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T26` Scaffold local Supabase configuration, migrations, Edge Functions, and backend test harnesses — agent, complexity: simple, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T27` Add CI for the iOS build and unit-test targets — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T28` Add CI for Supabase migrations, pgTAP tests, and Edge Function tests — agent, complexity: simple, depends-on: T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
