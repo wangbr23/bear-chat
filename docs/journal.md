@@ -29,3 +29,7 @@ Completed `T18`: registered the explicit Bear Chat App ID, enabled Sign in with 
 ## 2026-10-03 — local Supabase foundation scaffolded
 
 Completed `T26`: added a pinned local Supabase CLI configuration, immutable migration and planned Edge Function directory boundaries, an intentionally empty seed entry point, a pgTAP database harness test, a strict Deno 2 function-test harness, and local workflow documentation. The Deno format/lint/test task passes and Supabase CLI 2.119.0 parses the configuration. The pgTAP smoke test could not run because no Docker-compatible runtime is installed on this machine; `T28` will run backend tests in CI.
+
+## 2026-10-03 — backend CI added
+
+Completed `T28`: added `.github/workflows/backend-ci.yml` with two jobs triggered on `supabase/**` changes. The Edge Function job installs Deno 2 and runs the `deno task --config supabase/deno.json check` gate (format, lint, tests). The database job uses the pinned Supabase CLI 2.119.0 to start the local stack, rebuild the database from migrations and seed with `db reset`, and run `supabase test db`. The Deno job was verified locally with Deno 2.9.7; the database job could not run locally because this machine has no Docker-compatible runtime, so it is verified only once it runs on the GitHub runner. Nothing committed yet.

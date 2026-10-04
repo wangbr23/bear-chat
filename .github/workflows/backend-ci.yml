@@ -1,0 +1,47 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "supabase/**"
+      - ".github/workflows/backend-ci.yml"
+  pull_request:
+    paths:
+      - "supabase/**"
+      - ".github/workflows/backend-ci.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  edge-functions:
+    name: Edge Function checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Format, lint, and test Edge Functions
+        run: deno task --config supabase/deno.json check
+
+  database:
+    name: Migrations and pgTAP tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Version is pinned to match supabase/README.md.
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.119.0
+      - name: Start the local Supabase stack
+        run: supabase start
+      - name: Rebuild the database from migrations and seed
+        run: supabase db reset
+      - name: Run pgTAP database tests
+        run: supabase test db
