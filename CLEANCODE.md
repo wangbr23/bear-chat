@@ -19,6 +19,10 @@ Project-specific coding standards for agents and humans. Keep this practical and
 - Keep code close to where it is used until it has a reason to move.
 - Prefer explicit names that describe domain intent over generic names like `data`, `item`, or `helper`.
 
+## Build configuration
+
+- In `.xcconfig` files, `//` starts a comment that silently truncates the rest of the line — escape URLs and any value containing double slashes with `$()` (e.g. `https:$()/$()/host`). Verify resolved values with `xcodebuild -showBuildSettings` rather than trusting the file contents.
+
 ## Type safety
 
 - Avoid `any`, broad casts, non-null assertions, and ignored type errors unless there is a documented reason.

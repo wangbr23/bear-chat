@@ -2,5 +2,5 @@
 #include "Base.xcconfig"
 #include? "Secrets.xcconfig"
 
-SUPABASE_URL = https:$()/$()/YOUR_DEV_PROJECT.supabase.co
-SUPABASE_ANON_KEY = YOUR_DEV_ANON_KEY
+SUPABASE_URL = https:$()/$()/fgrlmmivvsazgcxrdanb.supabase.co
+SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZncmxtbWl2dnNhemdjeHJkYW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MzYxMzIsImV4cCI6MjEwNTUxMjEzMn0.xxzbNWzy5dXiERPrA8gLicFm5jD4JuqNeGGRBT4KuuQ

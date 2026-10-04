@@ -31,3 +31,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Run CI on GitHub Actions with one workflow file per area: `backend-ci.yml` for Supabase migrations, pgTAP tests, and Edge Function checks, and a separate workflow for iOS build and tests in `T27`. Backend jobs trigger on `supabase/**` path changes, pin Supabase CLI 2.119.0 to match `supabase/README.md`, and run with least-privilege `contents: read` permissions and per-ref concurrency cancellation.
 
 **Consequences:** `T27` should add an iOS workflow in the same style rather than introducing a different CI platform. Docker-backed jobs are verifiable only on GitHub runners because local machines may lack a container runtime.
+
+## 2026-10-03 — Ship configuration boundaries for development and staging only
+
+**Status:** Accepted
+
+**Context:** The HLD and LLD plan one Supabase project per environment (development, staging, production), but production provisioning was intentionally deferred in `T19`, and `T29` initially wired Release builds to a placeholder `Production.xcconfig` for a project that does not exist.
+
+**Decision:** Ship only the environments that exist: Debug builds use development endpoints and Release builds use staging endpoints. `Production.xcconfig` remains committed with placeholders but unreferenced; when the production Supabase project is provisioned, a follow-up change moves Release to it (and can add a dedicated staging configuration if the beta needs one). Endpoint values are placeholder until real staging values are filled in.
+
+**Consequences:** Release builds are staging-bound during the internal TestFlight period, which matches the beta plan. Cross-environment production isolation remains untested until production exists; `T187` covers it after provisioning.

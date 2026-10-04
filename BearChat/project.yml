@@ -17,7 +17,8 @@ configs:
 
 configFiles:
   Debug: Configuration/Development.xcconfig
-  Release: Configuration/Production.xcconfig
+  # Release points at staging until the production Supabase project is provisioned (T19).
+  Release: Configuration/Staging.xcconfig
 
 targets:
   BearChat:

@@ -32,14 +32,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09ED10A68224EC216243A79F /* BearChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BearChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		256B07BAA48213545D0D9C52 /* BearChat.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BearChat.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09ED10A68224EC216243A79F /* BearChat.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BearChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		256B07BAA48213545D0D9C52 /* BearChatUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BearChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44EB18F0881AEE5A9179D035 /* ProductLimitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLimitsTests.swift; sourceTree = "<group>"; };
 		4CD1BEE33BD51D2273FA8F54 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		8340A84DB95D75E1900A9AF8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		987F0C37CC40C0FAA7BEE9F5 /* BearChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearChatApp.swift; sourceTree = "<group>"; };
-		A3AC2C0F3D071B3B9024DC21 /* BearChat.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BearChat.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEB32A8B286CA5D179DF21DE /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		A3AC2C0F3D071B3B9024DC21 /* BearChatTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BearChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCCF00B0392673A9522F3956 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		E05407A97B20B4479E0605C0 /* AuthenticationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,8 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				09ED10A68224EC216243A79F /* BearChat.app */,
-				A3AC2C0F3D071B3B9024DC21 /* BearChat.xctest */,
-				256B07BAA48213545D0D9C52 /* BearChat.xctest */,
+				A3AC2C0F3D071B3B9024DC21 /* BearChatTests.xctest */,
+				256B07BAA48213545D0D9C52 /* BearChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				4CD1BEE33BD51D2273FA8F54 /* Development.xcconfig */,
-				DEB32A8B286CA5D179DF21DE /* Production.xcconfig */,
+				CCCF00B0392673A9522F3956 /* Staging.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -424,7 +424,7 @@
 			packageProductDependencies = (
 			);
 			productName = BearChatUITests;
-			productReference = 256B07BAA48213545D0D9C52 /* BearChat.xctest */;
+			productReference = 256B07BAA48213545D0D9C52 /* BearChatUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		734391EF43492FE57B0D4840 /* BearChat */ = {
@@ -461,7 +461,7 @@
 			packageProductDependencies = (
 			);
 			productName = BearChatTests;
-			productReference = A3AC2C0F3D071B3B9024DC21 /* BearChat.xctest */;
+			productReference = A3AC2C0F3D071B3B9024DC21 /* BearChatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -553,7 +553,7 @@
 /* Begin XCBuildConfiguration section */
 		29E1DE70C124F915232DB03B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEB32A8B286CA5D179DF21DE /* Production.xcconfig */;
+			baseConfigurationReference = CCCF00B0392673A9522F3956 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -613,7 +613,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TBTS7J4B2X;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -637,7 +636,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TBTS7J4B2X;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (

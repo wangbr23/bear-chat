@@ -33,3 +33,7 @@ Completed `T26`: added a pinned local Supabase CLI configuration, immutable migr
 ## 2026-10-03 — backend CI added
 
 Completed `T28`: added `.github/workflows/backend-ci.yml` with two jobs triggered on `supabase/**` changes. The Edge Function job installs Deno 2 and runs the `deno task --config supabase/deno.json check` gate (format, lint, tests). The database job uses the pinned Supabase CLI 2.119.0 to start the local stack, rebuild the database from migrations and seed with `db reset`, and run `supabase test db`. The Deno job was verified locally with Deno 2.9.7; the database job could not run locally because this machine has no Docker-compatible runtime, so it is verified only once it runs on the GitHub runner. Nothing committed yet.
+
+## 2026-10-03 — environment configuration boundaries added
+
+Completed `T29`, scoped to development and staging only because the production Supabase project is not provisioned yet. `BearChat/project.yml` now maps the Debug configuration to `Configuration/Development.xcconfig` and the Release configuration to `Configuration/Staging.xcconfig` (previously Release pointed at the placeholder `Production.xcconfig`); the Xcode project was regenerated with xcodegen and both configurations build for the iOS Simulator. `Production.xcconfig` stays committed as the landing spot for when T19 completes. Staging endpoint values remain placeholders until the real URL and anon key are filled in. A `supabase/.env.example` was deliberately left out until Edge Function work begins around T153.
