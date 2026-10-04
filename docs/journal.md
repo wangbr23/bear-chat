@@ -25,3 +25,7 @@ Expanded `TODO.md` into a coverage-audited 200-task plan for the full standalone
 ## 2026-09-20 — Apple app provisioning completed
 
 Completed `T18`: registered the explicit Bear Chat App ID, enabled Sign in with Apple, Push Notifications, and Associated Domains, configured Bear Chat as the primary Sign in with Apple App ID, provisioned an APNs authentication key, and verified automatic signing by running Bear Chat on a physical iPhone. Supabase Apple authentication setup in `T19` is no longer blocked by Apple provisioning.
+
+## 2026-10-03 — local Supabase foundation scaffolded
+
+Completed `T26`: added a pinned local Supabase CLI configuration, immutable migration and planned Edge Function directory boundaries, an intentionally empty seed entry point, a pgTAP database harness test, a strict Deno 2 function-test harness, and local workflow documentation. The Deno format/lint/test task passes and Supabase CLI 2.119.0 parses the configuration. The pgTAP smoke test could not run because no Docker-compatible runtime is installed on this machine; `T28` will run backend tests in CI.

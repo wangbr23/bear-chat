@@ -12,3 +12,6 @@ DerivedData/
 
 # Local secrets — never commit
 BearChat/Configuration/Secrets.xcconfig
+/supabase/.env*
+!/supabase/.env.example
+/supabase/.temp/

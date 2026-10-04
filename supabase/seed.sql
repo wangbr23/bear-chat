@@ -1,0 +1,1 @@
+-- Intentionally empty until T50 introduces synthetic fixtures for the application schema.

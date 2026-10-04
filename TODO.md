@@ -37,7 +37,7 @@ Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simp
 ## Project foundations
 
 - [x] `T25` Scaffold the iOS app and test targets with filesystem-synchronized groups and pinned Supabase Swift dependency — agent, complexity: complex, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
-- [ ] `T26` Scaffold local Supabase configuration, migrations, Edge Functions, and backend test harnesses — agent, complexity: simple, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [x] `T26` Scaffold local Supabase configuration, migrations, Edge Functions, and backend test harnesses — agent, complexity: simple, depends-on: T4, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T27` Add CI for the iOS build and unit-test targets — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T28` Add CI for Supabase migrations, pgTAP tests, and Edge Function tests — agent, complexity: simple, depends-on: T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T29` Add non-secret development, staging, and production configuration boundaries — agent, complexity: simple, depends-on: T25, T26, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
