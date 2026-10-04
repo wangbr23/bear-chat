@@ -51,3 +51,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Ship no `Account` type. `Domain/Models/Account.swift` keeps its LLD-pinned name but holds only `Profile`. The signed-in user ID is available from the Supabase auth session, and the signed-in/out/onboarding routing state is a SessionController concern (T104), which will define the session shape it actually needs. Future tasks should not re-introduce an Account wrapper without a consumer.
 
 **Consequences:** The T32 task title's "account" wording is satisfied by `Profile` living in `Account.swift`. Any later task that wants a session/identity bundle (e.g. T104 routing) defines it locally at that point rather than speculatively.
+
+## 2026-10-04 — Defer RoomDetail until a consumer defines it
+
+**Status:** Accepted
+
+**Context:** The LLD file plan describes `Room.swift` as holding room summary, detail, member, and role shapes, but its client-domain section defines fields only for `RoomSummary` and `RoomMember`. T33 has no current feature or API consumer that establishes a distinct detail shape.
+
+**Decision:** Do not invent a `RoomDetail` type during T33. Keep the exact summary/member/role shapes now, and let the first concrete room-detail query or feature define the additional type if it needs one.
+
+**Consequences:** T33 stays aligned with fields actually specified by the LLD and avoids a speculative wrapper. A later task such as T95 may introduce `RoomDetail` once its query contract establishes the required fields.

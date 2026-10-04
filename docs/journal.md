@@ -53,3 +53,7 @@ Completed `T32` (first of the T32–T39 domain-type wave): created `BearChatApp/
 ## 2026-10-03 — Dropped the Account domain type after review
 
 During the Sideye review of `T32`, Bradley asked whether `Account` was needed versus just `Profile`. Conclusion: drop it. The LLD sketches fields for `Profile` and `Appearance` but never `Account`, the HLD's domain-type list has no account type, and nothing consumes the wrapper yet — the signed-in user ID is available from the Supabase session, and the signed-in/onboarding routing state belongs to `SessionController` (T104), which will define its own session shape when implemented. `Account.swift` now holds only `Profile` (file name unchanged per the LLD file plan); decision recorded in docs/decisions.md.
+
+## 2026-10-04 — Room, membership, and invitation domain types
+
+Completed `T33`: added `Room.swift` with the closed owner/member role plus the LLD's exact `RoomSummary` and `RoomMember` fields, and `Invitation.swift` with safe invite metadata (never the raw secret or digest) plus typed success, invalid, expired, used, and room-full join outcomes matching the protected RPC contract. `RoomDetail` remains deferred because the LLD names it in the file plan but defines no fields and no current consumer needs it; this is recorded in docs/decisions.md. No field-round-trip tests were added for the behavior-free value types. The full BearChat `xcodebuild test` command passed on the iPhone 17 Pro simulator. Remaining domain-model frontier: T34–T39.
