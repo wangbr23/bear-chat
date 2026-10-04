@@ -71,3 +71,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** `SendState` models only pending lifecycle states: draft, sending, awaiting reconciliation, and failed. A confirmed send is removed from pending storage and represented as `RoomEvent`; there is no committed pending state.
 
 **Consequences:** UI and synchronization reducers have one canonical representation after confirmation and cannot show the same event as both pending and committed. Reconciliation by `clientEventID` performs the transition without resending or duplicating the event.
+
+## 2026-10-04 — Push-device environment means APNs environment
+
+**Status:** Accepted
+
+**Context:** The HLD and LLD give each push-device registration an `environment` field but do not say whether it identifies a Bear Chat deployment or the APNs endpoint where the device token is valid. Bear Chat already isolates development, staging, and production in separate Supabase projects, while APNs tokens must be sent through either the sandbox or production service.
+
+**Decision:** Model the push-device environment as the closed APNs values `sandbox` and `production`. Do not duplicate the Bear Chat deployment environment in the client push-device registration type.
+
+**Consequences:** Push registration and delivery can route each token to the correct APNs service. The selected Supabase project continues to identify the Bear Chat deployment environment independently.
