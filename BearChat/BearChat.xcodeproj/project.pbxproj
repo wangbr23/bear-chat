@@ -26,6 +26,7 @@
 		DFD53BB223BC84B048D877FF /* Presence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C6A1032A0FD4B275E6667 /* Presence.swift */; };
 		EECEC4FF4DE4CE8914CA8A65 /* AssetIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39F7E5B0A774DFC9BFA7724 /* AssetIdentifiers.swift */; };
 		FB53DCAB031411F0A82D7C1D /* PresenceTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C55ED50F2F45D68030A4F7 /* PresenceTiming.swift */; };
+		FC7AB09538B7924FD383A42D /* RoomConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E835DB9FE08384E511704D6 /* RoomConnectionState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		458416FC07EC386FD820A799 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		4CD1BEE33BD51D2273FA8F54 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		8340A84DB95D75E1900A9AF8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		8E835DB9FE08384E511704D6 /* RoomConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomConnectionState.swift; sourceTree = "<group>"; };
 		941173AF316C181933B8C996 /* NotificationPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreference.swift; sourceTree = "<group>"; };
 		987F0C37CC40C0FAA7BEE9F5 /* BearChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearChatApp.swift; sourceTree = "<group>"; };
 		9B53D739765EC84C2B598505 /* MovementTiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTiming.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				941173AF316C181933B8C996 /* NotificationPreference.swift */,
 				E76C6A1032A0FD4B275E6667 /* Presence.swift */,
 				D82159264566490B9D5B6D73 /* Room.swift */,
+				8E835DB9FE08384E511704D6 /* RoomConnectionState.swift */,
 				0A5E45C09BAF9A0A61C868FD /* RoomEvent.swift */,
 				D6E6F6038173BE6DA38BCBED /* Safety.swift */,
 				CBB634EA8B99A54A26B1CF96 /* SendState.swift */,
@@ -576,6 +579,7 @@
 				FB53DCAB031411F0A82D7C1D /* PresenceTiming.swift in Sources */,
 				63B14F4C990F3E569A443328 /* ProductLimits.swift in Sources */,
 				2FDE6A13B38E1356A7A9F2E5 /* Room.swift in Sources */,
+				FC7AB09538B7924FD383A42D /* RoomConnectionState.swift in Sources */,
 				4FEC30FB460FD285C4CD970F /* RoomEvent.swift in Sources */,
 				CB52211D50F2631F2D29C938 /* RootView.swift in Sources */,
 				52783D2451707D6155B34927 /* Safety.swift in Sources */,
