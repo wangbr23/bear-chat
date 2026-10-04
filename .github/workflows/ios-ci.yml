@@ -24,11 +24,14 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest
       - name: Pick an available iPhone simulator
-        run: echo "SIMULATOR=$(xcrun simctl list devices available | grep -m1 'iPhone' | cut -d '(' -f2 | xargs)" >> "$GITHUB_ENV"
+        run: |
+          SIMULATOR=$(xcrun simctl list devices available | grep -m1 'iPhone' | cut -d '(' -f1 | xargs)
+          echo "Picked simulator: $SIMULATOR"
+          echo "SIMULATOR=$SIMULATOR" >> "$GITHUB_ENV"
       - name: Build and run unit tests
         run: xcodebuild -project BearChat/BearChat.xcodeproj -scheme BearChat -destination "platform=iOS Simulator,name=${SIMULATOR}" test
