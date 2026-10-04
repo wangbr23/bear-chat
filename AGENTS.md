@@ -1,18 +1,18 @@
 # bear-chat
 
-Extension for iMessage to make chats interactive with bear animations.
+Standalone iPhone messenger where shared rooms are interactive bear spaces — ordered chat, presence, actions, reactions, and bear customization, backed by Supabase.
 
 ## Stack
-- Language/runtime: Not chosen yet
-- Framework: Not chosen yet
-- Package manager: Not chosen yet
+- Language/runtime: Swift 6 on iOS 17+ for the app; PostgreSQL 17 and Deno 2 for the Supabase backend
+- Framework: SwiftUI, SpriteKit, SwiftData; Supabase Swift SDK 2.26.0 (pinned)
+- Package manager: Swift Package Manager (Xcode-managed); Supabase CLI pinned at 2.119.0 via `npx`
 
 ## Commands
-- Install: Not configured yet
-- Dev/run: Not configured yet
-- Test: Not configured yet
-- Lint/typecheck: Not configured yet
-- Build: Not configured yet
+- Install: `xcodegen generate` inside `BearChat/` regenerates the Xcode project after `project.yml` changes; SPM resolves on first build. Backend needs a Docker-compatible runtime, Node 20+, and Deno 2.
+- Dev/run: open `BearChat/BearChat.xcodeproj` and run the BearChat scheme. Local backend stack: `npx --yes supabase@2.119.0 start` from the repo root.
+- Test: iOS — `xcodebuild -project BearChat/BearChat.xcodeproj -scheme BearChat -destination 'platform=iOS Simulator,name=<simulator>' test`. Database — `npx --yes supabase@2.119.0 test db` (stack running). Edge Functions — `deno task --config supabase/deno.json check` (format, lint, tests).
+- Lint/typecheck: Swift 6 strict concurrency via Xcode; Edge Functions covered by the deno check task. No separate linter configured.
+- Build: same xcodebuild command with `build` instead of `test`. CI runs both automatically: `.github/workflows/ios-ci.yml`, `.github/workflows/backend-ci.yml`.
 
 ## Conventions
 Cross-project coding principles (KISS, no god files, surface conflicts, etc.) live in `~/.claude/CLAUDE.md` — don't restate them here. Project coding conventions live in `CLEANCODE.md`; keep detailed code-quality rules there so this file stays focused on project context.
@@ -30,7 +30,11 @@ Subagents that run as Herdr tabs follow the `herdr-subagents` skill (opencode gl
 - Reading files: read only the section needed (`offset`/`limit`) after locating it with `grep`/`glob`, unless the whole file is genuinely required.
 
 ## Architecture
-(Placeholder — fill in once the system has real shape. High-level modules/services and how they talk to each other. Update this when the shape changes, not on every commit.)
+One native iPhone app backed by one Supabase project per environment (development and staging are live; production stays unwired until `T19` provisions it).
+
+- **iOS app (`BearChat/`)** — SwiftUI app shell and feature screens, SpriteKit room scene, SwiftData bounded local cache. Typed service boundaries call Supabase; per-environment endpoints come from the xcconfig files in `BearChat/Configuration/` (Debug → development, Release → staging).
+- **Backend (`supabase/`)** — PostgreSQL 17 schema with RLS owning every authorization decision, narrow transactional functions for sensitive mutations, Realtime for change delivery, and Edge Functions (Deno 2) for APNs notifications. pgTAP tests live in `supabase/tests/database/`, Deno tests in `supabase/tests/functions/`.
+- **Design source of truth** — `docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md` pins planned files, data invariants, RPCs, and test ownership; requirements trace in `docs/verification/requirements-traceability.md`.
 
 ## Context files
 Keep these current — they're what gives any session, or either CLI tool, continuity without re-deriving history from scratch.
