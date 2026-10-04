@@ -81,3 +81,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Model the push-device environment as the closed APNs values `sandbox` and `production`. Do not duplicate the Bear Chat deployment environment in the client push-device registration type.
 
 **Consequences:** Push registration and delivery can route each token to the correct APNs service. The selected Supabase project continues to identify the Bear Chat deployment environment independently.
+
+## 2026-10-04 — Safety report value sets stay deferred to T9/T13
+
+**Status:** Accepted
+
+**Context:** T37 pins the `Safety.swift` domain shapes, but the LLD's resolved open questions defer report categories, disclosed context, reviewer fields, and retention policy (T9), as well as the safety-review interface (T13). The LLD fixes only the structural contract: `create_report` takes room, category, nullable reported user/event, and a confirmed disclosure version and returns a report ID and status; client reads expose status but never reviewer metadata.
+
+**Decision:** Model the block request, report submission envelope, and client-visible report receipt now, with category and status as plain strings. Do not invent category or status value sets; introduce closed enums when T9/T13 approve them. The presented disclosure content itself (what the reporter is told will be shared) is defined by T161 together with T9's approved context, not by this domain file.
+
+**Consequences:** The report API adapter (T102) and report UI (T161) can build against stable shapes without inventing policy. A later change narrows category/status into closed enums without altering the submission envelope.
