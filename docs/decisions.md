@@ -61,3 +61,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Do not invent a `RoomDetail` type during T33. Keep the exact summary/member/role shapes now, and let the first concrete room-detail query or feature define the additional type if it needs one.
 
 **Consequences:** T33 stays aligned with fields actually specified by the LLD and avoids a speculative wrapper. A later task such as T95 may introduce `RoomDetail` once its query contract establishes the required fields.
+
+## 2026-10-04 — Confirmed sends leave the pending-send state model
+
+**Status:** Accepted
+
+**Context:** The LLD file-plan comment describes draft, sending, committed, and failed send states, while its detailed pending-event sketch and synchronization flow use draft, sending, awaiting reconciliation, and failed. The flow says server confirmation replaces the optimistic projection with the canonical event carrying a server sequence.
+
+**Decision:** `SendState` models only pending lifecycle states: draft, sending, awaiting reconciliation, and failed. A confirmed send is removed from pending storage and represented as `RoomEvent`; there is no committed pending state.
+
+**Consequences:** UI and synchronization reducers have one canonical representation after confirmation and cannot show the same event as both pending and committed. Reconciliation by `clientEventID` performs the transition without resending or duplicating the event.
