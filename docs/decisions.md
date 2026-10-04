@@ -41,3 +41,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Ship only the environments that exist: Debug builds use development endpoints and Release builds use staging endpoints. `Production.xcconfig` remains committed with placeholders but unreferenced; when the production Supabase project is provisioned, a follow-up change moves Release to it (and can add a dedicated staging configuration if the beta needs one). Endpoint values are placeholder until real staging values are filled in.
 
 **Consequences:** Release builds are staging-bound during the internal TestFlight period, which matches the beta plan. Cross-environment production isolation remains untested until production exists; `T187` covers it after provisioning.
+
+## 2026-10-03 — No Account domain type; Profile is the identity shape
+
+**Status:** Accepted
+
+**Context:** T32 was titled "account, profile, and versioned appearance domain types" and the LLD file plan pins `Account.swift` with "Account and profile domain shapes", but the LLD's client-domain sketches define fields only for `Profile` and `Appearance` — there is no Account sketch. During the T32 review, the reviewer questioned whether `Account` was needed versus just `Profile`.
+
+**Decision:** Ship no `Account` type. `Domain/Models/Account.swift` keeps its LLD-pinned name but holds only `Profile`. The signed-in user ID is available from the Supabase auth session, and the signed-in/out/onboarding routing state is a SessionController concern (T104), which will define the session shape it actually needs. Future tasks should not re-introduce an Account wrapper without a consumer.
+
+**Consequences:** The T32 task title's "account" wording is satisfied by `Profile` living in `Account.swift`. Any later task that wants a session/identity bundle (e.g. T104 routing) defines it locally at that point rather than speculatively.

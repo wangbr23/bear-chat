@@ -45,3 +45,11 @@ Completed `T27` and `T30` together. `T27` added `.github/workflows/ios-ci.yml`: 
 ## 2026-10-03 — AGENTS.md reflects the real project
 
 Completed `T31`: replaced AGENTS.md's placeholder stack, commands, and architecture sections with the actual shape — Swift 6/iOS 17+ app with SwiftUI, SpriteKit, SwiftData, and the pinned Supabase Swift SDK; real xcodebuild/supabase/deno test commands matching what CI runs; the GitHub Actions workflows; and a three-bullet architecture summary (app, backend, design source of truth). Also replaced the outdated iMessage-extension one-liner with the standalone-app description. Project foundations are now fully documented; the next frontier is the client domain types (T32–T39).
+
+## 2026-10-03 — Account, profile, and appearance domain types
+
+Completed `T32` (first of the T32–T39 domain-type wave): created `BearChatApp/Domain/Models/Appearance.swift` with the versioned `Appearance` ID shape and `Account.swift` with `Account` (user ID + optional `Profile`) and `Profile` (id, display name, appearance, revision, updatedAt), exactly following the LLD client-domain sketches. Bradley chose to skip unit tests for these — they are pure value types with no behavior, so there is nothing to assert beyond field round-trips; the LLD does not sketch `Account`, so it was kept minimal (user ID + optional profile, which encodes the signed-in-without-profile onboarding state from the sign-in flow). Verified with a successful `xcodebuild build` on the iPhone 17 Pro simulator; no tests run because none were added. Remaining frontier: T33–T39.
+
+## 2026-10-03 — Dropped the Account domain type after review
+
+During the Sideye review of `T32`, Bradley asked whether `Account` was needed versus just `Profile`. Conclusion: drop it. The LLD sketches fields for `Profile` and `Appearance` but never `Account`, the HLD's domain-type list has no account type, and nothing consumes the wrapper yet — the signed-in user ID is available from the Supabase session, and the signed-in/onboarding routing state belongs to `SessionController` (T104), which will define its own session shape when implemented. `Account.swift` now holds only `Profile` (file name unchanged per the LLD file plan); decision recorded in docs/decisions.md.

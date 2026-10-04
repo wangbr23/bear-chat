@@ -46,7 +46,7 @@ Task format: `- [ ] \`T<n>\` <description> — <manual|agent>[, complexity: simp
 
 ## Client domain model
 
-- [ ] `T32` Define account, profile, and versioned appearance domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
+- [x] `T32` Define account, profile, and versioned appearance domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md *(Resolved: `Domain/Models/Account.swift` holds `Profile` (id, display name, appearance, revision, updatedAt) and `Domain/Models/Appearance.swift` holds the versioned `Appearance` ID shape from the LLD data-model sketch. No separate `Account` type was added: the LLD sketches no Account fields and nothing consumes the wrapper yet; the signed-in user ID comes from the auth session and T104 defines the routing session shape. No unit tests — pure value types with no behavior; verified by a successful `xcodebuild build`.)*
 - [ ] `T33` Define room, membership, and invitation domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T34` Define ordered event, payload, pending-send, and send-state domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
 - [ ] `T35` Define presence, movement, normalized-position, and active-bear domain types — agent, complexity: simple, depends-on: T25, design: docs/designs/2026-09-20-bear-chat-standalone-hld-lld.md
