@@ -91,3 +91,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Model the block request, report submission envelope, and client-visible report receipt now, with category and status as plain strings. Do not invent category or status value sets; introduce closed enums when T9/T13 approve them. The presented disclosure content itself (what the reporter is told will be shared) is defined by T161 together with T9's approved context, not by this domain file.
 
 **Consequences:** The report API adapter (T102) and report UI (T161) can build against stable shapes without inventing policy. A later change narrows category/status into closed enums without altering the submission envelope.
+
+## 2026-10-04 — Appearance validation splits between schema shape and RPC allowlist
+
+**Status:** Accepted
+
+**Context:** The LLD requires a "validated appearance jsonb" on `profiles` and says the profile functions "validate allowlists and compatibility", but does not say how much validation belongs in the table itself. The catalog release (T22) that defines the real asset IDs and compatibility rules is not final, and T51 seeds `asset_catalog_entries` from it later.
+
+**Decision:** The profiles table enforces only the structural shape of the appearance document — positive integer `schemaVersion`, non-empty string body/face/fur-color/accent IDs, JSON arrays for clothing and accessory IDs — wrapped in `coalesce(..., false)` so missing or null keys fail instead of passing as NULL. Allowlist membership and compatibility checking happen inside the protected profile functions (T60) against seeded `asset_catalog_entries`. `asset_catalog_entries.kind` stays unconstrained text so new catalog kinds arrive as seed rows (T51) rather than enum migrations, and the compatibility jsonb carries no size check because the table is never client-writable.
+
+**Consequences:** Malformed payloads can never be stored while catalog knowledge stays in one place (the seeded catalog) instead of being duplicated into schema DDL. A future appearance-schema version updates this structural check through a normal migration.
