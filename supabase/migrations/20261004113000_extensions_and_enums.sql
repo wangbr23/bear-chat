@@ -1,6 +1,6 @@
 -- pgcrypto backs the invitation-secret SHA-256 digest (token_digest bytea);
--- report-status and report-category enums are deferred to the T9/T13
--- approvals and will arrive with the safety-report migration (T47).
+-- report-status and report-category enums stay deferred until the T9/T13
+-- approvals introduce the approved value sets (docs/decisions.md).
 
 create extension if not exists pgcrypto with schema extensions;
 
