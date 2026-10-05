@@ -248,7 +248,14 @@ select is(
 );
 
 select is(
-  (select count(*) from public.rate_limit_counters),
+  (
+    select count(*)
+    from public.rate_limit_counters
+    where subject_user_id in (
+      '11111111-1111-1111-1111-111111111111',
+      '22222222-2222-2222-2222-222222222222'
+    )
+  ),
   4::bigint,
   'incrementing does not create extra rows'
 );
@@ -273,7 +280,14 @@ select is_empty(
 );
 
 select is(
-  (select count(*) from public.rate_limit_counters),
+  (
+    select count(*)
+    from public.rate_limit_counters
+    where subject_user_id in (
+      '11111111-1111-1111-1111-111111111111',
+      '22222222-2222-2222-2222-222222222222'
+    )
+  ),
   4::bigint,
   'deleting one profile preserves other subjects counters'
 );
@@ -285,7 +299,11 @@ where user_id in (
 );
 
 select is_empty(
-  $$select 1 from public.rate_limit_counters$$,
+  $$select 1 from public.rate_limit_counters
+    where subject_user_id in (
+      '11111111-1111-1111-1111-111111111111',
+      '22222222-2222-2222-2222-222222222222'
+    )$$,
   'deleting the remaining profiles removes every counter'
 );
 

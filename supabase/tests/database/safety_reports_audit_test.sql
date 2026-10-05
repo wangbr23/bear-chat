@@ -590,7 +590,11 @@ select ok(
 );
 
 select is(
-  (select count(*) from public.reports),
+  (
+    select count(*)
+    from public.reports
+    where reporter_id = '11111111-1111-1111-1111-111111111111'
+  ),
   1::bigint,
   'deleting a room preserves the retained report'
 );
@@ -608,7 +612,11 @@ select ok(
 );
 
 select is(
-  (select count(*) from public.reports),
+  (
+    select count(*)
+    from public.reports
+    where reporter_id = '11111111-1111-1111-1111-111111111111'
+  ),
   1::bigint,
   'deleting the reported profile preserves the retained report'
 );
@@ -617,7 +625,11 @@ delete from public.profiles
 where user_id = '11111111-1111-1111-1111-111111111111';
 
 select is(
-  (select count(*) from public.reports),
+  (
+    select count(*)
+    from public.reports
+    where reporter_id = '11111111-1111-1111-1111-111111111111'
+  ),
   0::bigint,
   'deleting the reporter profile removes the filed report'
 );

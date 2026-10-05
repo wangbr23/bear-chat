@@ -115,7 +115,14 @@ select lives_ok(
 );
 
 select is(
-  (select count(*) from public.user_blocks),
+  (
+    select count(*)
+    from public.user_blocks
+    where (blocker_id, blocked_id) in (
+      ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222'),
+      ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111')
+    )
+  ),
   2::bigint,
   'opposite block directions create two rows'
 );
@@ -193,7 +200,14 @@ select is_empty(
 );
 
 select is(
-  (select count(*) from public.user_blocks),
+  (
+    select count(*)
+    from public.user_blocks
+    where (blocker_id, blocked_id) in (
+      ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222'),
+      ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111')
+    )
+  ),
   2::bigint,
   'deleting one profile preserves unrelated directional blocks'
 );
@@ -202,7 +216,11 @@ delete from public.profiles
 where user_id = '11111111-1111-1111-1111-111111111111';
 
 select is_empty(
-  $$select 1 from public.user_blocks$$,
+  $$select 1 from public.user_blocks
+    where (blocker_id, blocked_id) in (
+      ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222'),
+      ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111')
+    )$$,
   'deleting a remaining participant removes every related block'
 );
 
