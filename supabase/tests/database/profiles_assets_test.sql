@@ -1,6 +1,6 @@
 begin;
 
-select plan(55);
+select plan(54);
 
 select has_table('public', 'profiles', 'the profiles table exists');
 

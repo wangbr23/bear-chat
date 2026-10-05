@@ -105,3 +105,7 @@ Completed `T43`: added `migrations/20261004130000_room_events.sql` with generate
 ## 2026-10-04 — Room-event references scoped after review
 
 Sideye review found that the original single-column `referenced_event_id` foreign key allowed an event to reference history in another room, which could violate room isolation and block deletion of that other room. Replaced it with a composite `(room_id, referenced_event_id)` foreign key backed by a unique `(room_id, id)` key, so same-room references remain valid and cross-room references fail structurally before T71's function-level validation. Expanded `room_events_test.sql` from 58 to 59 assertions with the cross-room regression case. Verification: the full migration chain and targeted same-room, cross-room, and room-cascade checks pass on a throwaway PostgreSQL 15 database; the BearChat iOS test suite passes on the iPhone 17 Pro simulator; `git diff --check` passes. The full pgTAP command remains blocked because the Supabase Docker stack is not running, and the Deno check remains blocked because `deno` is not installed.
+
+## 2026-10-05 — Profiles and assets pgTAP plan corrected
+
+Fixed the backend CI failure in `profiles_assets_test.sql`: the file contained 54 unconditional pgTAP assertions but declared a 55-test plan. Corrected the plan to 54 and aligned the completed T41 note. No schema or assertion behavior changed. Static assertion counting and `git diff --check` pass; the full Supabase database suite remains dependent on a local Docker-compatible runtime or GitHub Actions.
