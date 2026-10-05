@@ -111,3 +111,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** Room deletion is a protected hard-delete operation. The `rooms` table has no deletion marker or purge timestamp; deleting a room cascades to ordinary room-owned records. T69 implements the owner-only transaction, and the scheduled room-purge task T70 is retired. Separately retained safety-report evidence remains governed by the disclosure and retention policy that T9/T13 will approve and must not prevent room deletion.
 
 **Consequences:** Deleted rooms and their ordinary content disappear immediately rather than relying on RLS to hide pending data. Later schemas must use room-delete cascades where content belongs solely to a room, while any approved safety evidence must be modeled independently enough to survive only for its disclosed retention period.
+
+## 2026-10-05 — Rate-limit counter key and operation-label shape (T48)
+
+**Status:** Accepted
+
+**Context:** The LLD specifies `rate_limit_counters` only as "Composite key for subject, operation, and fixed window; count updated only inside protected functions." Seven operation families need limiting (event, movement, heartbeat, invite, join, report, device registration), and production limit values are deferred to T23/T172, so the schema must settle only the key shape and label encoding.
+
+**Decision:** The key is `(subject_user_id, operation, window_start)`. The subject is user-scoped with a cascade FK to `profiles` because every rate-limited family is attributed to the authenticated user. `operation` is constrained text over the seven approved labels rather than a new enum — the LLD reserves enums for stable closed states, does not list a rate-limit operation enum, and internal operation labels may gain entries as protected functions evolve. Window lengths are not stored; each protected function derives bucket boundaries from its own server constant. Attempt counts default to 1 and are checked `>= 1`. T58 additionally owns this function-internal table's client-access-denial policies, which no policy task previously covered.
+
+**Consequences:** Adding a rate-limited operation later is a one-line check-constraint migration, same ceremony as an enum addition but without enum-alter restrictions. Changing a window length after deployment can briefly inherit an old bucket's count on key collision and self-heals as old windows age out. Account deletion cascades counters away with profiles. Per-invitation join brute-force limiting (subject = invitation) would need a different subject type and is out of scope; the LLD's join limit is per authenticated user. Expired-window sweeping has no owning task yet and is tracked as T204 before production load.
