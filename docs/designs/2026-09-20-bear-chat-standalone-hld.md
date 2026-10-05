@@ -118,7 +118,7 @@ Signing out clears local sensitive caches after pending writes are resolved or e
 The database uses generated UUID primary keys and UTC server timestamps. The high-level records are:
 
 - **profiles:** authenticated user ID, display name, validated appearance document, revision, creation/update timestamps, and deletion marker.
-- **rooms:** room ID, name, owner ID, next event sequence, creation timestamp, and deletion marker.
+- **rooms:** room ID, name, owner ID, layout ID, next event sequence, and creation timestamp.
 - **room_members:** room/user pair, role, join timestamp, mute state, and last acknowledged sequence. A unique pair prevents duplicate membership.
 - **room_invites:** room, creator, cryptographic token digest, expiry, optional use limit, use count, and revocation timestamp. Raw invite secrets are never stored.
 - **room_events:** room, server sequence, sender or deleted-sender marker, client event ID, event kind, validated payload, optional target, optional referenced event, and server timestamp.
@@ -138,7 +138,7 @@ RLS limits room, member, profile, event, and presence reads to signed-in current
 
 Room creation inserts the room, owner membership, and first invitation in one transaction. Joining hashes the submitted invitation secret, locks the matching invitation and room membership set, verifies validity and use limits, enforces fewer than eight members, inserts membership, and increments use count. This prevents concurrent ninth-member joins.
 
-Removing or leaving a member immediately removes their membership, presence sessions, and room position; subsequent reads and subscriptions fail membership authorization. Ownership transfer and owner departure occur in one transaction so a live room never lacks an owner. Room deletion marks the room unavailable, revokes invitations, disconnects presence, and queues permanent content deletion after a short undo-free safety window defined by policy.
+Removing or leaving a member immediately removes their membership, presence sessions, and room position; subsequent reads and subscriptions fail membership authorization. Ownership transfer and owner departure occur in one transaction so a live room never lacks an owner. After explicit confirmation, room deletion revokes invitations, disconnects presence, and permanently deletes the room and its content in one protected operation.
 
 Invitation links carry a high-entropy bearer secret. The universal-link page reveals no private room metadata before authentication and successful join. Owners can revoke or replace links, and the service rate-limits invite creation and join attempts.
 

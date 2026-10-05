@@ -288,8 +288,8 @@ Every table carries `created_at` and/or `updated_at` server timestamps where use
 | Record | Required fields and constraints |
 |---|---|
 | `profiles` | `user_id` PK/FK to `auth.users`, bounded `display_name`, validated `appearance jsonb`, `revision bigint >= 1`, `deleted_at`. |
-| `rooms` | `id` PK, bounded `name`, `owner_id` FK to `profiles`, `layout_id = 'lodge-v1'`, `next_event_sequence bigint >= 1`, `deleted_at`, `purge_after`. |
-| `room_members` | Composite PK `(room_id, user_id)`, `role`, `joined_at`, `is_muted`, `last_acknowledged_sequence`; unique partial index permits exactly one owner row per live room. |
+| `rooms` | `id` PK, bounded `name`, `owner_id` FK to `profiles`, `layout_id = 'lodge-v1'`, `next_event_sequence bigint >= 1`, `created_at`. |
+| `room_members` | Composite PK `(room_id, user_id)`, `role`, `joined_at`, `is_muted`, `last_acknowledged_sequence`; unique partial index permits at most one owner-role row per room, while protected transactions require one. |
 | `room_invites` | `id`, `room_id`, `creator_id`, `token_digest bytea`, `expires_at`, nullable positive `max_uses`, `use_count >= 0`, `revoked_at`; digest is never selected by clients. |
 | `room_events` | `id`, `room_id`, positive `sequence`, nullable `sender_id`, `client_event_id`, `kind`, validated `payload jsonb`, nullable `target_user_id`, nullable `referenced_event_id`, `created_at`; unique `(room_id, sequence)` and `(room_id, sender_id, client_event_id)` while sender exists. |
 | `presence_sessions` | Composite PK `(room_id, user_id, connection_id)`, `installation_id`, `lease_expires_at`, `updated_at`; opening a new room removes other leases for the same user and installation. |
@@ -306,9 +306,9 @@ Database enums are used only for stable closed states such as member role, event
 
 ### Named invariants
 
-- **INV-1 Current membership:** A caller may read room data or invoke a room mutation only while one non-deleted `room_members` row exists for that caller and room.
+- **INV-1 Current membership:** A caller may read room data or invoke a room mutation only while a `room_members` row exists for that caller and room.
 - **INV-2 Room capacity:** A join transaction locks the room and relevant invite before counting memberships; a committed room has at most eight members.
-- **INV-3 Room owner:** Every non-deleted room has exactly one owner, and `rooms.owner_id` matches the owner membership row. A partial unique index prevents multiple owner rows; protected transactions prevent zero.
+- **INV-3 Room owner:** Every room has exactly one owner, and `rooms.owner_id` matches the owner membership row. A partial unique index prevents multiple owner rows; protected transactions prevent zero.
 - **INV-4 Event order:** Only `send_room_event` increments `rooms.next_event_sequence`; committed room sequences are unique and contiguous.
 - **INV-5 Event idempotency:** Reusing `(room, sender, client_event_id)` with identical input returns the existing event; reusing it with different input is rejected.
 - **INV-6 Event references:** Targets and referenced events belong to the same room, and the referenced event predates the new event.
@@ -317,7 +317,7 @@ Database enums are used only for stable closed states such as member role, event
 - **INV-9 Movement freshness:** Movement revisions increase per room/user, and clients apply only a revision greater than the last applied revision.
 - **INV-10 Ephemeral movement:** Presence and movement never enter `room_events`, cache history, reports, notification payloads, or general logs.
 - **INV-11 Bundled rendering:** Appearance and event payloads contain semantic IDs only; no accepted payload can name a remote asset or executable instruction.
-- **INV-12 Deleted access:** A deleted room or removed membership is rejected by RLS and functions immediately even if physical purge runs later.
+- **INV-12 Deleted access:** A permanently deleted room is absent, and a removed membership is rejected by RLS and functions immediately.
 - **INV-13 Cache isolation:** Every SwiftData cache record is scoped to the authenticated account ID, and sign-out destroys that account's store before another account can open it.
 
 ## Interfaces / API surface
@@ -364,7 +364,7 @@ All client-callable functions use `auth.uid()`, fixed `search_path`, explicit in
 | `leave_room` | Room | Removes caller, presence, and state; rejects owner departure while other members remain. |
 | `transfer_room_ownership` | Room, target member | Locks room/members and swaps both role rows plus `owner_id`. |
 | `remove_room_member` | Room, target member | Owner-only removal, disallow self/owner target, removes target leases/state. |
-| `mark_room_deleted` | Room | Owner-only immediate access denial, invite revoke, lease deletion, and purge scheduling. |
+| `delete_room` | Room | Owner-only invitation and lease cleanup followed by permanent room/content deletion. |
 | `update_profile` | Display name, appearance, expected revision | Validates allowlists and compatibility, compare-and-swaps revision, returns current profile or conflict. |
 | `send_room_event` | Room, client event ID, kind, payload, target, reference | Enforces INV-1 and INV-4 through INV-7, rate limit, idempotency, and payload schema; returns committed event. |
 | `open_room_presence` | Room, installation ID, connection ID | Removes this installation's other room leases, resets stale position when no prior lease exists, creates 30-second lease, returns server time and own state. |
@@ -503,7 +503,7 @@ No service-role key, Apple private key, APNs key, invite secret, or raw push tok
 2. Ownership transfer locks the room and both membership rows so no observer sees an ownerless live room.
 3. Member removal immediately deletes that member's leases/state. RLS denies all subsequent content access even if the removed app has cached data.
 4. The removed app transitions on its next backend signal, closes channels, tells the user access ended, and deletes that room's protected cache.
-5. Room deletion sets `deleted_at` and `purge_after`, revokes invites, closes leases, and immediately hides the room through RLS. A scheduled server job permanently deletes content after the policy window.
+5. After explicit confirmation, room deletion revokes invites, closes leases, and permanently deletes the room and its content in one protected operation.
 
 ### 12. Account deletion
 
@@ -555,7 +555,7 @@ No service-role key, Apple private key, APNs key, invite secret, or raw push tok
 | Profile revision conflict | Return the current profile, keep the local draft, and ask the user to reload before another save. |
 | Invitation invalid, expired, revoked, used, or full | Show the stable reason without room name, members, or history; discard the raw secret after the result. |
 | Post-install invite cannot resume | Show instructions to reopen the original private link; do not place the secret in pasteboard, analytics, or public page metadata. |
-| Membership removed or room deleted | RLS blocks access immediately; close room work, show access-ended state, delete that room cache, and return to room list. |
+| Membership removed or room deleted | Backend access fails immediately; close room work, show access-ended state, delete that room cache, and return to room list. |
 | Realtime disconnect | Mark reconnecting, keep cached chat readable, pause autoplay, resubscribe, and run canonical catch-up before live state. |
 | Event sequence gap | Buffer later notifications, fetch after the watermark until contiguous, and never fabricate or skip a sequence. |
 | Event transport outcome unknown | Query by client event ID first; commit the projection if found, otherwise show failed and wait for explicit retry. |
@@ -572,7 +572,7 @@ No service-role key, Apple private key, APNs key, invite secret, or raw push tok
 | Notification references inaccessible room | Discard the route after authentication and show the room list; never reveal stale payload details. |
 | Report submission fails | Keep the user's disclosure confirmation in memory for retry during the current session; do not create an untracked local report claim. |
 | Account deletion partially fails | Keep deletion-pending access blocked, preserve the idempotent job, retry forward, and return only a content-free status. |
-| Room purge or presence cleanup job is delayed | RLS and expiry timestamps continue to hide data immediately; cleanup delay changes storage use, not user-visible authorization. |
+| Presence cleanup job is delayed | Expiry timestamps continue to hide stale presence immediately; cleanup delay changes storage use, not user-visible authorization. |
 
 ## Test mapping
 
@@ -590,7 +590,7 @@ No service-role key, Apple private key, APNs key, invite secret, or raw push tok
 | Movement | `movement_rpc_test.sql`, `MovementCoordinatorTests`, `WalkableMapTests`, `DepthProjectorTests`, and eight-device profiling cover hit priority, rapid retarget, stale revisions, two-device control, spawn reset, clamping, z-order, action interruption, rate limits, and 0.2/1-second thresholds. |
 | Offline/cache | `RoomCacheTests`, `PersistenceControllerTests`, and device tests cover newest-first load, page cursors, eviction, protected files, pending reconciliation, explicit retry, sign-out/removal cleanup, corruption, reinstall, and restore. |
 | Notifications | `supabase/tests/functions/send-notification.test.ts` plus staging APNs tests cover generic/detailed payloads, mute, block, active-room suppression, removed members, invalid tokens, delayed/absent delivery, invite routes, and App Store fallback. |
-| Safety and deletion | `safety_rpc_test.sql`, `delete-account.test.ts`, `SafetyUITests`, and runbook drills cover exact disclosure, least-privilege report access, audit rows, owner resolution, anonymization, report exception, room purge, device/presence cleanup, retry, and final Auth deletion. |
+| Safety and deletion | `safety_rpc_test.sql`, `delete-account.test.ts`, `SafetyUITests`, and runbook drills cover exact disclosure, least-privilege report access, audit rows, owner resolution, anonymization, report exception, permanent room deletion, device/presence cleanup, retry, and final Auth deletion. |
 | Payload security | Property/fuzz tests for Swift DTO mapping and `event_payload_validation_test.sql` submit oversized/deep JSON, invalid Unicode, unknown versions/kinds, remote URLs, cross-room IDs, unknown assets, duplicate IDs, and inconsistent columns. |
 | Privacy | Release checklist inspects TLS, provider/backups encryption, RLS/grants, environment secrets, binaries, logs, notification payloads, privacy manifest, absence of ad/address-book SDKs, movement-coordinate exclusion, and non-E2EE copy. |
 | Performance | XCTest metrics, Instruments, and staging load scripts measure 2-second cached usability, 0.2-second feedback/local movement, 1-second remote movement, newest page latency, eight moving layered bears, event commit/propagation, cache size, and heartbeat/movement writes on the oldest supported iPhone. |

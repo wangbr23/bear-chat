@@ -101,3 +101,13 @@ Append-only log of architecture decisions. One entry per decision, newest at the
 **Decision:** The profiles table enforces only the structural shape of the appearance document — positive integer `schemaVersion`, non-empty string body/face/fur-color/accent IDs, JSON arrays for clothing and accessory IDs — wrapped in `coalesce(..., false)` so missing or null keys fail instead of passing as NULL. Allowlist membership and compatibility checking happen inside the protected profile functions (T60) against seeded `asset_catalog_entries`. `asset_catalog_entries.kind` stays unconstrained text so new catalog kinds arrive as seed rows (T51) rather than enum migrations, and the compatibility jsonb carries no size check because the table is never client-writable.
 
 **Consequences:** Malformed payloads can never be stored while catalog knowledge stays in one place (the seeded catalog) instead of being duplicated into schema DDL. A future appearance-schema version updates this structural check through a normal migration.
+
+## 2026-10-04 — Permanently delete rooms without delayed purge state
+
+**Status:** Accepted
+
+**Context:** T8 approved immediate permanent room deletion with a confirmation warning, but the HLD, LLD, and T70 still described soft deletion through `deleted_at`/`purge_after` followed by scheduled cleanup. T42 needed one model before defining the rooms table.
+
+**Decision:** Room deletion is a protected hard-delete operation. The `rooms` table has no deletion marker or purge timestamp; deleting a room cascades to ordinary room-owned records. T69 implements the owner-only transaction, and the scheduled room-purge task T70 is retired. Separately retained safety-report evidence remains governed by the disclosure and retention policy that T9/T13 will approve and must not prevent room deletion.
+
+**Consequences:** Deleted rooms and their ordinary content disappear immediately rather than relying on RLS to hide pending data. Later schemas must use room-delete cascades where content belongs solely to a room, while any approved safety evidence must be modeled independently enough to survive only for its disclosed retention period.
