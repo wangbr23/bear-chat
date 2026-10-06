@@ -219,6 +219,7 @@ select ok(
 select has_trigger(
   'public',
   'audit_log',
+  'audit_log_append_only',
   'the audit log carries its append-only trigger'
 );
 

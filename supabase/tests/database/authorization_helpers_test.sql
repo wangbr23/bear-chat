@@ -88,6 +88,7 @@ select is(
 select function_privs_are(
   'public',
   'is_room_member',
+  array['uuid'],
   'anon',
   array['EXECUTE'],
   'anon can execute the membership helper for policy evaluation'
@@ -95,6 +96,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_member',
+  array['uuid'],
   'authenticated',
   array['EXECUTE'],
   'authenticated callers execute the membership helper'
@@ -102,6 +104,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_member',
+  array['uuid'],
   'service_role',
   '{}'::text[],
   'service_role does not execute the membership helper'
@@ -109,6 +112,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_member',
+  array['uuid'],
   'public',
   '{}'::text[],
   'public does not execute the membership helper'
@@ -116,6 +120,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_owner',
+  array['uuid'],
   'anon',
   array['EXECUTE'],
   'anon can execute the ownership helper for policy evaluation'
@@ -123,6 +128,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_owner',
+  array['uuid'],
   'authenticated',
   array['EXECUTE'],
   'authenticated callers execute the ownership helper'
@@ -130,6 +136,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_owner',
+  array['uuid'],
   'service_role',
   '{}'::text[],
   'service_role does not execute the ownership helper'
@@ -137,6 +144,7 @@ select function_privs_are(
 select function_privs_are(
   'public',
   'is_room_owner',
+  array['uuid'],
   'public',
   '{}'::text[],
   'public does not execute the ownership helper'
